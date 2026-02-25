@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大嵓埜 — 青藍色コース Instagram Reel</title>
+  <title>大嵓埜 — Instagram Reel</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -13,9 +13,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
     h1 {
       font-size: 2.4rem;
@@ -27,7 +26,34 @@
       font-size: 1rem;
       color: #888;
       letter-spacing: 0.3em;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 1.5rem;
+    }
+    .tab {
+      padding: 0.6rem 1.6rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      color: #888;
+      background: transparent;
+      border: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab:first-child { border-radius: 6px 0 0 6px; }
+    .tab:last-child { border-radius: 0 6px 6px 0; }
+    .tab.active {
+      color: #E8D0A0;
+      border-color: #E8D0A0;
+      background: rgba(232, 208, 160, 0.08);
+    }
+    .tab:hover:not(.active) {
+      color: #bbb;
+      border-color: #555;
     }
     .video-container {
       max-width: 400px;
@@ -40,6 +66,14 @@
       width: 100%;
       display: block;
     }
+    .course-info {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+      letter-spacing: 0.15em;
+      line-height: 1.8;
+    }
     .footer {
       margin-top: 2rem;
       font-size: 0.75rem;
@@ -50,13 +84,50 @@
 </head>
 <body>
   <h1>大 嵓 埜</h1>
-  <p class="subtitle">青藍色（せいらんいろ）コース</p>
+  <p class="subtitle">北新地・懐石料理</p>
+
+  <div class="tabs">
+    <button class="tab active" data-course="seiran" onclick="switchCourse('seiran')">青藍色</button>
+    <button class="tab" data-course="kikyou" onclick="switchCourse('kikyou')">桔梗色</button>
+  </div>
+
   <div class="video-container">
-    <video controls autoplay muted loop playsinline>
-      <source src="output/okurano_reel.mp4" type="video/mp4">
-      お使いのブラウザは動画再生に対応していません。
+    <video id="player" controls autoplay muted loop playsinline>
+      <source id="videoSrc" src="output/okurano_reel.mp4" type="video/mp4">
     </video>
   </div>
+
+  <div class="course-info" id="courseInfo">
+    青藍色（せいらんいろ）コース
+  </div>
+
   <p class="footer">Instagram Reel Preview</p>
+
+  <script>
+    const courses = {
+      seiran: {
+        src: 'output/okurano_reel.mp4',
+        label: '青藍色（せいらんいろ）コース'
+      },
+      kikyou: {
+        src: 'output2/okurano_kikyou_reel.mp4',
+        label: '桔梗色（ききょういろ）コース　¥23,000'
+      }
+    };
+
+    function switchCourse(name) {
+      const player = document.getElementById('player');
+      const src = document.getElementById('videoSrc');
+      const info = document.getElementById('courseInfo');
+
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelector(`[data-course="${name}"]`).classList.add('active');
+
+      src.src = courses[name].src;
+      info.textContent = courses[name].label;
+      player.load();
+      player.play();
+    }
+  </script>
 </body>
 </html>
