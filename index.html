@@ -87,6 +87,13 @@
     .lang-tabs .tab:nth-child(3),
     .lang-tabs .tab:nth-child(5),
     .lang-tabs .tab:nth-child(6) { border-left: none; }
+    .tab.unavailable {
+      color: #444;
+      border-color: #222;
+      background: rgba(255,255,255,0.02);
+      cursor: default;
+    }
+    .tab.unavailable:hover { color: #444; border-color: #222; }
     .video-container {
       max-width: 400px;
       width: 100%;
@@ -177,14 +184,29 @@
       currentCourse = name;
       document.querySelectorAll('.course-tabs .tab').forEach(t => t.classList.remove('active'));
       document.querySelector(`.course-tabs [data-course="${name}"]`).classList.add('active');
+      updateAvailability();
       updateVideo();
     }
 
     function switchLang(lang) {
+      if (!videos[currentCourse]?.[lang]) return;
       currentLang = lang;
       document.querySelectorAll('.lang-tabs .tab').forEach(t => t.classList.remove('active'));
       document.querySelector(`.lang-tabs [data-lang="${lang}"]`).classList.add('active');
       updateVideo();
+    }
+
+    function updateAvailability() {
+      document.querySelectorAll('.lang-tabs .tab').forEach(t => {
+        const lang = t.dataset.lang;
+        const available = !!videos[currentCourse]?.[lang];
+        t.classList.toggle('unavailable', !available);
+        if (!available && t.classList.contains('active')) {
+          t.classList.remove('active');
+          currentLang = 'ja';
+          document.querySelector('.lang-tabs [data-lang="ja"]').classList.add('active');
+        }
+      });
     }
 
     function updateVideo() {
@@ -203,6 +225,8 @@
       player.load();
       player.play();
     }
+
+    updateAvailability();
   </script>
 </body>
 </html>
