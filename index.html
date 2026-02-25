@@ -70,23 +70,22 @@
     }
     .lang-tabs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
     .lang-tabs .tab {
-      padding: 0.4rem 1rem;
-      font-size: 0.78rem;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.72rem;
       border-radius: 0;
+      border: 1px solid #333;
+      border-left: none;
+      border-top: none;
     }
+    .lang-tabs .tab:nth-child(4n+1) { border-left: 1px solid #333; }
+    .lang-tabs .tab:nth-child(-n+4) { border-top: 1px solid #333; }
     .lang-tabs .tab:nth-child(1) { border-radius: 6px 0 0 0; }
-    .lang-tabs .tab:nth-child(3) { border-radius: 0 6px 0 0; }
-    .lang-tabs .tab:nth-child(4) { border-radius: 0 0 0 6px; border-top: none; }
-    .lang-tabs .tab:nth-child(5) { border-top: none; }
-    .lang-tabs .tab:nth-child(6) { border-radius: 0 0 6px 0; border-top: none; }
-    .lang-tabs .tab:nth-child(n+4) { border-left: 1px solid #333; }
-    .lang-tabs .tab:nth-child(2),
-    .lang-tabs .tab:nth-child(3),
-    .lang-tabs .tab:nth-child(5),
-    .lang-tabs .tab:nth-child(6) { border-left: none; }
+    .lang-tabs .tab:nth-child(4) { border-radius: 0 6px 0 0; }
+    .lang-tabs .tab:nth-child(9) { border-radius: 0 0 0 6px; }
+    .lang-tabs .tab:nth-child(12) { border-radius: 0 0 6px 0; }
     .tab.unavailable {
       color: #444;
       border-color: #222;
@@ -138,10 +137,16 @@
     <div class="tabs lang-tabs">
       <button class="tab active" data-lang="ja" onclick="switchLang('ja')">日本語</button>
       <button class="tab" data-lang="en" onclick="switchLang('en')">English</button>
-      <button class="tab" data-lang="zh" onclick="switchLang('zh')">中文</button>
+      <button class="tab" data-lang="zh_cn" onclick="switchLang('zh_cn')">简体中文</button>
+      <button class="tab" data-lang="zh_tw" onclick="switchLang('zh_tw')">繁體中文</button>
+      <button class="tab" data-lang="ko" onclick="switchLang('ko')">한국어</button>
       <button class="tab" data-lang="fr" onclick="switchLang('fr')">Français</button>
       <button class="tab" data-lang="de" onclick="switchLang('de')">Deutsch</button>
       <button class="tab" data-lang="th" onclick="switchLang('th')">ไทย</button>
+      <button class="tab" data-lang="pt" onclick="switchLang('pt')">Português</button>
+      <button class="tab" data-lang="pt_br" onclick="switchLang('pt_br')">Português BR</button>
+      <button class="tab" data-lang="tl" onclick="switchLang('tl')">Filipino</button>
+      <button class="tab" data-lang="vi" onclick="switchLang('vi')">Tiếng Việt</button>
     </div>
   </div>
 
@@ -160,20 +165,32 @@
   <script>
     const videos = {
       seiran: {
-        ja:  { src: 'output/okurano_reel.mp4',              label: '青藍色（せいらんいろ）コース　¥18,000' },
-        en:  { src: 'output3/okurano_seiran_en_reel.mp4',    label: 'Seiran Blue Course　¥18,000' },
-        zh:  { src: 'output5/okurano_seiran_zh_reel.mp4',    label: '青蓝色套餐　¥18,000' },
-        fr:  { src: 'output6/okurano_seiran_fr_reel.mp4',    label: 'Menu Seiran — Bleu Céruléen　¥18,000' },
-        de:  { src: 'output7/okurano_seiran_de_reel.mp4',    label: 'Menü Seiran — Azurblau　¥18,000' },
-        th:  { src: 'output8/okurano_seiran_th_reel.mp4',    label: 'เมนูเซรัน — สีฟ้าคราม　¥18,000' }
+        ja:    { src: 'output/okurano_reel.mp4',                  label: '青藍色（せいらんいろ）コース　¥18,000' },
+        en:    { src: 'output_en/okurano_seiran_en_reel.mp4',     label: 'Seiran Blue Course　¥18,000' },
+        zh_cn: { src: 'output_zh_cn/okurano_seiran_zh_cn_reel.mp4', label: '青蓝色套餐　¥18,000' },
+        zh_tw: { src: 'output_zh_tw/okurano_seiran_zh_tw_reel.mp4', label: '青藍色套餐　¥18,000' },
+        ko:    { src: 'output_ko/okurano_seiran_ko_reel.mp4',    label: '세이란 블루 코스　¥18,000' },
+        fr:    { src: 'output_fr/okurano_seiran_fr_reel.mp4',    label: 'Menu Seiran — Bleu Céruléen　¥18,000' },
+        de:    { src: 'output_de/okurano_seiran_de_reel.mp4',    label: 'Menü Seiran — Azurblau　¥18,000' },
+        th:    { src: 'output_th/okurano_seiran_th_reel.mp4',    label: 'เมนูเซรัน — สีฟ้าคราม　¥18,000' },
+        pt:    { src: 'output_pt/okurano_seiran_pt_reel.mp4',    label: 'Menu Seiran — Azul Cerúleo　¥18,000' },
+        pt_br: { src: 'output_pt_br/okurano_seiran_pt_br_reel.mp4', label: 'Menu Seiran — Azul Cerúleo　¥18,000' },
+        tl:    { src: 'output_tl/okurano_seiran_tl_reel.mp4',    label: 'Menu Seiran — Asul na Kulay　¥18,000' },
+        vi:    { src: 'output_vi/okurano_seiran_vi_reel.mp4',    label: 'Thực đơn Seiran — Xanh lam　¥18,000' }
       },
       kikyou: {
-        ja:  { src: 'output2/okurano_kikyou_reel.mp4',      label: '桔梗色（ききょういろ）コース　¥23,000' },
-        en:  { src: 'output4/okurano_kikyou_en_reel.mp4',    label: 'Kikyou Purple Course　¥23,000' },
-        zh:  null,
-        fr:  null,
-        de:  null,
-        th:  null
+        ja:    { src: 'output2/okurano_kikyou_reel.mp4',             label: '桔梗色（ききょういろ）コース　¥23,000' },
+        en:    { src: 'output2_en/okurano_kikyou_en_reel.mp4',       label: 'Kikyou Purple Course　¥23,000' },
+        zh_cn: { src: 'output2_zh_cn/okurano_kikyou_zh_cn_reel.mp4', label: '桔梗色套餐　¥23,000' },
+        zh_tw: { src: 'output2_zh_tw/okurano_kikyou_zh_tw_reel.mp4', label: '桔梗色套餐　¥23,000' },
+        ko:    { src: 'output2_ko/okurano_kikyou_ko_reel.mp4',       label: '키쿄 퍼플 코스　¥23,000' },
+        fr:    { src: 'output2_fr/okurano_kikyou_fr_reel.mp4',       label: 'Menu Kikyou — Violet Campanule　¥23,000' },
+        de:    { src: 'output2_de/okurano_kikyou_de_reel.mp4',       label: 'Menü Kikyou — Glockenblumen-Violett　¥23,000' },
+        th:    { src: 'output2_th/okurano_kikyou_th_reel.mp4',       label: 'เมนูคิเคียว — สีม่วงดอกเบลล์　¥23,000' },
+        pt:    { src: 'output2_pt/okurano_kikyou_pt_reel.mp4',       label: 'Menu Kikyou — Violeta Campânula　¥23,000' },
+        pt_br: { src: 'output2_pt_br/okurano_kikyou_pt_br_reel.mp4', label: 'Menu Kikyou — Violeta Campânula　¥23,000' },
+        tl:    { src: 'output2_tl/okurano_kikyou_tl_reel.mp4',       label: 'Menu Kikyou — Lila ng Kampanula　¥23,000' },
+        vi:    { src: 'output2_vi/okurano_kikyou_vi_reel.mp4',       label: 'Thực đơn Kikyou — Tím hoa chuông　¥23,000' }
       }
     };
 
