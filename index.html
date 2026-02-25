@@ -68,10 +68,25 @@
       color: #bbb;
       border-color: #555;
     }
+    .lang-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
     .lang-tabs .tab {
       padding: 0.4rem 1rem;
       font-size: 0.78rem;
+      border-radius: 0;
     }
+    .lang-tabs .tab:nth-child(1) { border-radius: 6px 0 0 0; }
+    .lang-tabs .tab:nth-child(3) { border-radius: 0 6px 0 0; }
+    .lang-tabs .tab:nth-child(4) { border-radius: 0 0 0 6px; border-top: none; }
+    .lang-tabs .tab:nth-child(5) { border-top: none; }
+    .lang-tabs .tab:nth-child(6) { border-radius: 0 0 6px 0; border-top: none; }
+    .lang-tabs .tab:nth-child(n+4) { border-left: 1px solid #333; }
+    .lang-tabs .tab:nth-child(2),
+    .lang-tabs .tab:nth-child(3),
+    .lang-tabs .tab:nth-child(5),
+    .lang-tabs .tab:nth-child(6) { border-left: none; }
     .video-container {
       max-width: 400px;
       width: 100%;
