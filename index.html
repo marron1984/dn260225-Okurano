@@ -46,6 +46,7 @@
     }
     .tab:first-child { border-radius: 6px 0 0 6px; }
     .tab:last-child { border-radius: 0 6px 6px 0; }
+    .tab:not(:first-child) { border-left: none; }
     .tab.active {
       color: #E8D0A0;
       border-color: #E8D0A0;
@@ -89,6 +90,7 @@
   <div class="tabs">
     <button class="tab active" data-course="seiran" onclick="switchCourse('seiran')">青藍色</button>
     <button class="tab" data-course="kikyou" onclick="switchCourse('kikyou')">桔梗色</button>
+    <button class="tab" data-course="seiran_en" onclick="switchCourse('seiran_en')">Seiran EN</button>
   </div>
 
   <div class="video-container">
@@ -112,6 +114,10 @@
       kikyou: {
         src: 'output2/okurano_kikyou_reel.mp4',
         label: '桔梗色（ききょういろ）コース　¥23,000'
+      },
+      seiran_en: {
+        src: 'output3/okurano_seiran_en_reel.mp4',
+        label: 'Seiran Blue Course　¥18,000'
       }
     };
 
