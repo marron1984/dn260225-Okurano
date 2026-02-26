@@ -342,8 +342,8 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
     y_pos += 65
 
     # 住所
-    addr_size = 32
-    addr_spacing = 42
+    addr_size = 16
+    addr_spacing = 22
     for i, line in enumerate(address_lines):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
@@ -374,7 +374,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(1.0 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=26:fontcolor=#{COLOR_GRAY}:"  # 20→26
+            f"fontfile='{font}':fontsize=65:fontcolor=#{COLOR_GRAY}:"  # 26→65 (250%)
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
         y_pos += 34
