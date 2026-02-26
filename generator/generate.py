@@ -238,8 +238,8 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
 
     alpha1, slide1 = make_slide_up_alpha(0.2, 0.5)
 
-    # カテゴリのdrawtext（文字拡大に合わせてY位置を上に）
-    cat_y_base = f"h-320" if not is_summary else f"h-140"
+    # カテゴリのdrawtext（説明テキスト拡大に合わせてY位置をさらに上に）
+    cat_y_base = f"h-400" if not is_summary else f"h-140"
     drawtext_cat = (
         f"drawtext=text='{esc_cat}':"
         f"fontfile='{font}':fontsize={cat_size}:fontcolor=#{COLOR_GOLD}:"
@@ -247,21 +247,21 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
         f"alpha={alpha1}"
     )
 
-    # 説明テキスト（複数行対応・140%拡大）
+    # 説明テキスト（複数行対応・さらに140%拡大）
     drawtext_descs = ""
     if description.strip():
         lines = description.strip().split("\n")
-        desc_size = 31 if lang in ("ja", "zh_cn", "zh_tw") else 28  # 22→31 (140%), 20→28
+        desc_size = 43 if lang in ("ja", "zh_cn", "zh_tw") else 39  # 31→43 (×1.4), 28→39
         if lang == "th":
-            desc_size = 27  # 19→27
-        line_spacing = 42   # 30→42（文字拡大に合わせて行間も広く）
+            desc_size = 38  # 27→38
+        line_spacing = 59   # 42→59（文字拡大に合わせて行間も広く）
         for i, line in enumerate(lines):
             esc_line = escape_ffmpeg_text(line.strip())
             if not esc_line:
                 continue
             line_delay = 0.4 + i * 0.15
             alpha_d, slide_d = make_slide_up_alpha(line_delay, 0.4)
-            y_offset = f"h-{240 - i * line_spacing}"
+            y_offset = f"h-{290 - i * line_spacing}"
             drawtext_descs += (
                 f",drawtext=text='{esc_line}':"
                 f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_GRAY}:"
