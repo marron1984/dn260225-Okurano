@@ -341,7 +341,9 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
     )
     y_pos += 65
 
-    # 住所（さらに拡大）
+    # 住所（日本語は倍サイズ）
+    addr_size = 64 if lang == "ja" else 32
+    addr_spacing = 80 if lang == "ja" else 42
     for i, line in enumerate(address_lines):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
@@ -349,10 +351,10 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(0.5 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=32:fontcolor=#{COLOR_GRAY}:"  # 26→32
+            f"fontfile='{font}':fontsize={addr_size}:fontcolor=#{COLOR_GRAY}:"
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += 42
+        y_pos += addr_spacing
     y_pos += 22
 
     # 電話番号
