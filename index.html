@@ -103,91 +103,16 @@
   <h1>大 嵓 埜</h1>
   <p class="subtitle">北新地・懐石料理</p>
 
-  <div class="selector">
-    <span class="selector-label">コース</span>
-    <div class="tabs course-tabs">
-      <button class="tab active" data-course="seiran" onclick="switchCourse('seiran')">青藍色　¥18,000</button>
-      <button class="tab" data-course="kikyou" onclick="switchCourse('kikyou')">桔梗色　¥23,000</button>
-    </div>
-  </div>
-
-  <div class="selector">
-    <span class="selector-label">言語</span>
-    <div class="tabs lang-tabs">
-      <button class="tab active" data-lang="ja" onclick="switchLang('ja')">日本語</button>
-      <button class="tab" data-lang="en" onclick="switchLang('en')">English</button>
-      <button class="tab" data-lang="zh" onclick="switchLang('zh')">中文</button>
-      <button class="tab" data-lang="fr" onclick="switchLang('fr')">Français</button>
-      <button class="tab" data-lang="de" onclick="switchLang('de')">Deutsch</button>
-      <button class="tab" data-lang="th" onclick="switchLang('th')">ไทย</button>
-    </div>
-  </div>
-
   <div class="video-container">
     <video id="player" controls autoplay muted loop playsinline>
-      <source id="videoSrc" src="output/okurano_reel.mp4" type="video/mp4">
+      <source src="output2/okurano_kikyou_reel.mp4" type="video/mp4">
     </video>
   </div>
 
-  <div class="course-info" id="courseInfo">
-    青藍色（せいらんいろ）コース　¥18,000
+  <div class="course-info">
+    桔梗色（ききょういろ）コース　¥23,000
   </div>
 
   <p class="footer">Instagram Reel Preview</p>
-
-  <script>
-    const videos = {
-      seiran: {
-        ja:  { src: 'output/okurano_reel.mp4',              label: '青藍色（せいらんいろ）コース　¥18,000' },
-        en:  { src: 'output3/okurano_seiran_en_reel.mp4',    label: 'Seiran Blue Course　¥18,000' },
-        zh:  { src: 'output5/okurano_seiran_zh_reel.mp4',    label: '青蓝色套餐　¥18,000' },
-        fr:  { src: 'output6/okurano_seiran_fr_reel.mp4',    label: 'Menu Seiran — Bleu Céruléen　¥18,000' },
-        de:  { src: 'output7/okurano_seiran_de_reel.mp4',    label: 'Menü Seiran — Azurblau　¥18,000' },
-        th:  { src: 'output8/okurano_seiran_th_reel.mp4',    label: 'เมนูเซรัน — สีฟ้าคราม　¥18,000' }
-      },
-      kikyou: {
-        ja:  { src: 'output2/okurano_kikyou_reel.mp4',      label: '桔梗色（ききょういろ）コース　¥23,000' },
-        en:  { src: 'output4/okurano_kikyou_en_reel.mp4',    label: 'Kikyou Purple Course　¥23,000' },
-        zh:  null,
-        fr:  null,
-        de:  null,
-        th:  null
-      }
-    };
-
-    let currentCourse = 'seiran';
-    let currentLang = 'ja';
-
-    function switchCourse(name) {
-      currentCourse = name;
-      document.querySelectorAll('.course-tabs .tab').forEach(t => t.classList.remove('active'));
-      document.querySelector(`.course-tabs [data-course="${name}"]`).classList.add('active');
-      updateVideo();
-    }
-
-    function switchLang(lang) {
-      currentLang = lang;
-      document.querySelectorAll('.lang-tabs .tab').forEach(t => t.classList.remove('active'));
-      document.querySelector(`.lang-tabs [data-lang="${lang}"]`).classList.add('active');
-      updateVideo();
-    }
-
-    function updateVideo() {
-      const player = document.getElementById('player');
-      const src = document.getElementById('videoSrc');
-      const info = document.getElementById('courseInfo');
-      const entry = videos[currentCourse]?.[currentLang];
-
-      if (!entry) {
-        info.textContent = '（この組み合わせは未作成です）';
-        return;
-      }
-
-      src.src = entry.src;
-      info.textContent = entry.label;
-      player.load();
-      player.play();
-    }
-  </script>
 </body>
 </html>
