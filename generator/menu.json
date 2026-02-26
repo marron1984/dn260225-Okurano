@@ -1,0 +1,674 @@
+{
+  "_README": "大嵓埜 月替わりメニュー設定ファイル — 毎月このファイルを更新してください",
+
+  "month": "2025-03",
+
+  "store": {
+    "name": {
+      "ja": "大 嵓 埜",
+      "en": "O K U R A N O",
+      "zh_cn": "大 嵓 埜",
+      "zh_tw": "大 嵓 埜",
+      "ko": "O K U R A N O",
+      "fr": "O K U R A N O",
+      "de": "O K U R A N O",
+      "th": "O K U R A N O",
+      "pt": "O K U R A N O",
+      "pt_br": "O K U R A N O",
+      "tl": "O K U R A N O",
+      "vi": "O K U R A N O"
+    },
+    "subtitle": {
+      "ja": "北新地・懐石料理",
+      "en": "Kitashinchi · Kaiseki Cuisine",
+      "zh_cn": "北新地 · 怀石料理",
+      "zh_tw": "北新地 · 懷石料理",
+      "ko": "기타신치 · 가이세키 요리",
+      "fr": "Kitashinchi · Cuisine Kaiseki",
+      "de": "Kitashinchi · Kaiseki-Küche",
+      "th": "คิตะชินจิ · อาหารไคเซกิ",
+      "pt": "Kitashinchi · Cozinha Kaiseki",
+      "pt_br": "Kitashinchi · Culinária Kaiseki",
+      "tl": "Kitashinchi · Lutuing Kaiseki",
+      "vi": "Kitashinchi · Ẩm thực Kaiseki"
+    },
+    "address": {
+      "ja": "〒530-0012\n大阪府大阪市北区曽根崎新地1-3-23\n北新地FOODEARビル3階",
+      "en": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nOODAR Bldg. 3F, Kitashinchi",
+      "zh_cn": "大阪市北区�的根崎新地1-3-23\n北新地FOODEAR大厦3楼",
+      "zh_tw": "大阪市北區曾根崎新地1-3-23\n北新地FOODEAR大樓3樓",
+      "ko": "오사카시 키타구 소네자키신치 1-3-23\n키타신치 FOODEAR 빌딩 3층",
+      "fr": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nImmeuble FOODEAR 3F, Kitashinchi",
+      "de": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nFOODEAR Gebäude 3F, Kitashinchi",
+      "th": "1-3-23 โซเนซากิ-ชินจิ, คิตะ-คุ, โอซาก้า\nตึก FOODEAR ชั้น 3, คิตะชินจิ",
+      "pt": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nEdifício FOODEAR 3F, Kitashinchi",
+      "pt_br": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nEdifício FOODEAR 3F, Kitashinchi",
+      "tl": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nFOODEAR Bldg. 3F, Kitashinchi",
+      "vi": "1-3-23 Sonezaki-Shinchi, Kita-ku, Osaka\nTòa nhà FOODEAR tầng 3, Kitashinchi"
+    },
+    "phone": "TEL 06-6341-3535",
+    "hours": {
+      "ja": "〔昼〕11:30～ 平日14:00・土曜15:00\n〔夜〕17:30～22:30\n定休日: 日曜・祝日",
+      "en": "Lunch 11:30– Weekdays 14:00 / Sat 15:00\nDinner 17:30–22:30\nClosed: Sundays & Holidays",
+      "zh_cn": "午餐 11:30～ 平日14:00・周六15:00\n晚餐 17:30～22:30\n休息日：周日及节假日",
+      "zh_tw": "午餐 11:30～ 平日14:00・週六15:00\n晚餐 17:30～22:30\n公休日：週日及國定假日",
+      "ko": "점심 11:30~ 평일 14:00 / 토요일 15:00\n저녁 17:30~22:30\n휴무: 일요일・공휴일",
+      "fr": "Déjeuner 11h30– Sem. 14h00 / Sam. 15h00\nDîner 17h30–22h30\nFermé : Dimanches et jours fériés",
+      "de": "Mittagessen 11:30– Wochentags 14:00 / Sa 15:00\nAbendessen 17:30–22:30\nGeschlossen: Sonntags & Feiertags",
+      "th": "อาหารกลางวัน 11:30~ วันธรรมดา 14:00 / เสาร์ 15:00\nอาหารเย็น 17:30~22:30\nหยุด: วันอาทิตย์และวันหยุดนักขัตฤกษ์",
+      "pt": "Almoço 11:30– Dias úteis 14:00 / Sáb 15:00\nJantar 17:30–22:30\nEncerrado: Domingos e feriados",
+      "pt_br": "Almoço 11:30– Dias úteis 14:00 / Sáb 15:00\nJantar 17:30–22:30\nFechado: Domingos e feriados",
+      "tl": "Tanghalian 11:30– Weekdays 14:00 / Sab 15:00\nHapunan 17:30–22:30\nSarado: Linggo at Holidays",
+      "vi": "Trưa 11:30~ Ngày thường 14:00 / Thứ 7 15:00\nTối 17:30~22:30\nNghỉ: Chủ nhật & Ngày lễ"
+    },
+    "reservation": {
+      "ja": "ご予約はこちら\nTableCheck",
+      "en": "Reservations\nTableCheck",
+      "zh_cn": "预约请点击\nTableCheck",
+      "zh_tw": "預約請點擊\nTableCheck",
+      "ko": "예약은 여기\nTableCheck",
+      "fr": "Réservations\nTableCheck",
+      "de": "Reservierungen\nTableCheck",
+      "th": "จองที่นี่\nTableCheck",
+      "pt": "Reservas\nTableCheck",
+      "pt_br": "Reservas\nTableCheck",
+      "tl": "Mag-reserve\nTableCheck",
+      "vi": "Đặt bàn\nTableCheck"
+    }
+  },
+
+  "courses": {
+    "seiran": {
+      "name": {
+        "ja": "青藍色（せいらんいろ）コース",
+        "en": "Seiran Blue Course",
+        "zh_cn": "青蓝色套餐",
+        "zh_tw": "青藍色套餐",
+        "ko": "세이란 블루 코스",
+        "fr": "Menu Seiran — Bleu Céruléen",
+        "de": "Menü Seiran — Azurblau",
+        "th": "เมนูเซรัน — สีฟ้าคราม",
+        "pt": "Menu Seiran — Azul Cerúleo",
+        "pt_br": "Menu Seiran — Azul Cerúleo",
+        "tl": "Menu Seiran — Asul na Kulay",
+        "vi": "Thực đơn Seiran — Xanh lam"
+      },
+      "price": 18000,
+      "title_image": "processed/入口のお花0001.png",
+      "ending_image": "processed/入口のお花0001.png",
+      "dishes": [
+        {
+          "image": "processed/_01先付0006.png",
+          "category": {
+            "ja": "先　付",
+            "en": "Appetizer",
+            "zh_cn": "先付",
+            "zh_tw": "先付",
+            "ko": "사키즈케",
+            "fr": "Amuse-bouche",
+            "de": "Vorspeise",
+            "th": "อาหารเรียกน้ำย่อย",
+            "pt": "Entrada",
+            "pt_br": "Entrada",
+            "tl": "Pampagana",
+            "vi": "Khai vị"
+          },
+          "description": {
+            "ja": "桜豆腐　芽キャベツ　ジュレ掛け\n春燕と子持ち烏賊　あおさ海苔餡かけ",
+            "en": "Cherry Blossom Tofu, Brussels Sprouts with Jelly\nSpring Turnip & Egg-laden Squid, Sea Lettuce Sauce",
+            "zh_cn": "樱花豆腐 抱子甘蓝 果冻浇汁\n春芜菁与子持乌贼 石莼海苔酱",
+            "zh_tw": "櫻花豆腐 抱子甘藍 果凍淋醬\n春蕪菁與子持烏賊 石蓴海苔醬",
+            "ko": "벚꽃 두부, 방울양배추, 젤리 소스\n봄 순무와 알배기 오징어, 파래 소스",
+            "fr": "Tofu fleur de cerisier, choux de Bruxelles en gelée\nNavet de printemps & calamar aux œufs, sauce aonori",
+            "de": "Kirschblüten-Tofu, Rosenkohl mit Gelee\nFrühlingsrübe & Tintenfisch mit Rogen, Aonori-Sauce",
+            "th": "เต้าหู้ซากุระ กะหล่ำดาว เจลลี่\nหัวผักกาดฤดูใบไม้ผลิ & ปลาหมึกไข่ ซอสสาหร่าย",
+            "pt": "Tofu de flor de cerejeira, couve-de-bruxelas com geleia\nNabo primaveril & lula com ovas, molho de alface-do-mar",
+            "pt_br": "Tofu de flor de cerejeira, couve-de-bruxelas com geleia\nNabo primaveril & lula com ovas, molho de alface-do-mar",
+            "tl": "Cherry Blossom Tofu, Brussels Sprouts na may Jelly\nSpring Turnip at Egg-laden Squid, Sea Lettuce Sauce",
+            "vi": "Đậu phụ hoa anh đào, bắp cải tí hon sốt jelly\nCủ cải xuân & mực trứng, sốt rong biển"
+          }
+        },
+        {
+          "image": "processed/_02吸物0015.png",
+          "category": {
+            "ja": "吸　物",
+            "en": "Clear Soup",
+            "zh_cn": "吸物",
+            "zh_tw": "吸物",
+            "ko": "스이모노",
+            "fr": "Soupe claire",
+            "de": "Klare Suppe",
+            "th": "ซุปใส",
+            "pt": "Sopa clara",
+            "pt_br": "Sopa clara",
+            "tl": "Malinaw na Sabaw",
+            "vi": "Súp trong"
+          },
+          "description": {
+            "ja": "若竹吸い　金目鯛　木の芽　独活",
+            "en": "Bamboo Shoot Soup, Alfonsino, Kinome, Udo",
+            "zh_cn": "嫩竹笋汤 金目鲷 山椒叶 独活",
+            "zh_tw": "嫩竹筍湯 金目鯛 山椒葉 獨活",
+            "ko": "죽순국 금눈돔 산초 독활",
+            "fr": "Soupe de pousses de bambou, alfonsino, kinome, udo",
+            "de": "Bambussprossen-Suppe, Alfonsino, Kinome, Udo",
+            "th": "ซุปหน่อไม้ ปลาคินเมได คิโนเมะ อุโดะ",
+            "pt": "Sopa de broto de bambu, alfonsino, kinome, udo",
+            "pt_br": "Sopa de broto de bambu, alfonsino, kinome, udo",
+            "tl": "Sabaw ng Bamboo Shoot, Alfonsino, Kinome, Udo",
+            "vi": "Súp măng, cá alfonsino, kinome, udo"
+          }
+        },
+        {
+          "image": "processed/_03造里0002.png",
+          "category": {
+            "ja": "造　里",
+            "en": "Sashimi",
+            "zh_cn": "造里",
+            "zh_tw": "造里",
+            "ko": "사시미",
+            "fr": "Sashimi",
+            "de": "Sashimi",
+            "th": "ซาชิมิ",
+            "pt": "Sashimi",
+            "pt_br": "Sashimi",
+            "tl": "Sashimi",
+            "vi": "Sashimi"
+          },
+          "description": {
+            "ja": "本日の造里四種盛り",
+            "en": "Four Seasonal Sashimi Selection",
+            "zh_cn": "本日四种刺身拼盘",
+            "zh_tw": "本日四種刺身拼盤",
+            "ko": "오늘의 사시미 네 가지 모둠",
+            "fr": "Assortiment de quatre sashimis de saison",
+            "de": "Vier saisonale Sashimi-Auswahl",
+            "th": "ซาชิมิสี่ชนิดตามฤดูกาล",
+            "pt": "Seleção de quatro sashimis sazonais",
+            "pt_br": "Seleção de quatro sashimis sazonais",
+            "tl": "Apat na Piling Sashimi ng Panahon",
+            "vi": "Sashimi bốn loại theo mùa"
+          }
+        },
+        {
+          "image": "processed/_04焼物0007.png",
+          "category": {
+            "ja": "焼　物",
+            "en": "Grilled",
+            "zh_cn": "烧物",
+            "zh_tw": "燒物",
+            "ko": "야키모노",
+            "fr": "Grillé",
+            "de": "Gegrillt",
+            "th": "ย่าง",
+            "pt": "Grelhado",
+            "pt_br": "Grelhado",
+            "tl": "Inihaw",
+            "vi": "Nướng"
+          },
+          "description": {
+            "ja": "黒毛和牛サーロインアスパラ巻き\n山椒ソース　人参ラペ　焼玉葱　木の芽",
+            "en": "Wagyu Sirloin Asparagus Roll\nSansho Sauce, Carrot Rapé, Grilled Onion, Kinome",
+            "zh_cn": "黑毛和牛西冷芦笋卷\n山椒酱 胡萝卜丝 烤洋葱 山椒叶",
+            "zh_tw": "黑毛和牛沙朗蘆筍捲\n山椒醬 胡蘿蔔絲 烤洋蔥 山椒葉",
+            "ko": "구로게 와규 등심 아스파라거스 롤\n산쇼 소스, 당근 라페, 구운 양파, 산초",
+            "fr": "Roulé de faux-filet Wagyu aux asperges\nSauce sansho, rapé de carottes, oignon grillé, kinome",
+            "de": "Wagyu-Roastbeef-Spargel-Rolle\nSansho-Sauce, Karotten-Rapé, Gegrillte Zwiebel, Kinome",
+            "th": "วากิวเซอร์ลอยน์พันหน่อไม้ฝรั่ง\nซอสซันโช แครอทราเป้ หัวหอมย่าง คิโนเมะ",
+            "pt": "Rolo de lombo Wagyu com espargos\nMolho sansho, rapé de cenoura, cebola grelhada, kinome",
+            "pt_br": "Rolinho de contrafilé Wagyu com aspargos\nMolho sansho, rapé de cenoura, cebola grelhada, kinome",
+            "tl": "Wagyu Sirloin Asparagus Roll\nSansho Sauce, Carrot Rapé, Grilled Onion, Kinome",
+            "vi": "Cuộn thăn ngoài Wagyu măng tây\nSốt sansho, cà rốt bào, hành nướng, kinome"
+          }
+        },
+        {
+          "image": "processed/_05揚物0017.png",
+          "category": {
+            "ja": "揚　物",
+            "en": "Deep Fried",
+            "zh_cn": "炸物",
+            "zh_tw": "炸物",
+            "ko": "아게모노",
+            "fr": "Friture",
+            "de": "Frittiert",
+            "th": "ทอด",
+            "pt": "Frito",
+            "pt_br": "Frito",
+            "tl": "Pinirito",
+            "vi": "Chiên"
+          },
+          "description": {
+            "ja": "桜海老と春キャベツの春巻き\n干しぶどう　クコの実　カリフラワー　カレーマヨ",
+            "en": "Sakura Shrimp & Spring Cabbage Spring Roll\nRaisin, Goji Berry, Cauliflower, Curry Mayo",
+            "zh_cn": "樱花虾与春卷心菜春卷\n葡萄干 枸杞 花椰菜 咖喱蛋黄酱",
+            "zh_tw": "櫻花蝦與春高麗菜春捲\n葡萄乾 枸杞 花椰菜 咖哩美乃滋",
+            "ko": "벚꽃 새우와 봄 양배추 춘권\n건포도, 구기자, 콜리플라워, 커리 마요",
+            "fr": "Rouleau de printemps aux crevettes sakura et chou\nRaisins secs, baies de goji, chou-fleur, mayo au curry",
+            "de": "Sakura-Garnelen & Frühlingskohl-Rolle\nRosinen, Goji-Beeren, Blumenkohl, Curry-Mayo",
+            "th": "ปอเปี๊ยะกุ้งซากุระกับกะหล่ำปลีฤดูใบไม้ผลิ\nลูกเกด โกจิเบอร์รี่ กะหล่ำดอก แกงกะหรี่มาโย",
+            "pt": "Rolinho primavera de camarão sakura e couve\nPassas, goji berry, couve-flor, maionese de caril",
+            "pt_br": "Rolinho primavera de camarão sakura e repolho\nPassas, goji berry, couve-flor, maionese de curry",
+            "tl": "Sakura Shrimp at Spring Cabbage Spring Roll\nPasas, Goji Berry, Cauliflower, Curry Mayo",
+            "vi": "Chả giò tôm sakura và bắp cải xuân\nNho khô, kỷ tử, súp lơ, sốt mayo cà ri"
+          }
+        },
+        {
+          "image": "processed/_06口直し0022.png",
+          "category": {
+            "ja": "口直し",
+            "en": "Palate Cleanser",
+            "zh_cn": "口直",
+            "zh_tw": "口直",
+            "ko": "입가심",
+            "fr": "Trou normand",
+            "de": "Gaumenfeger",
+            "th": "ล้างปาก",
+            "pt": "Limpa-palato",
+            "pt_br": "Limpa-palato",
+            "tl": "Palate Cleanser",
+            "vi": "Món thanh vị"
+          },
+          "description": {
+            "ja": "トマト　金柑　キウイジュレ掛け",
+            "en": "Tomato, Kumquat, Kiwi Jelly",
+            "zh_cn": "番茄 金桔 猕猴桃果冻",
+            "zh_tw": "番茄 金桔 奇異果果凍",
+            "ko": "토마토, 금귤, 키위 젤리",
+            "fr": "Tomate, kumquat, gelée de kiwi",
+            "de": "Tomate, Kumquat, Kiwi-Gelee",
+            "th": "มะเขือเทศ ส้มจี๊ด เจลลี่กีวี",
+            "pt": "Tomate, kumquat, geleia de kiwi",
+            "pt_br": "Tomate, kumquat, geleia de kiwi",
+            "tl": "Kamatis, Kumquat, Kiwi Jelly",
+            "vi": "Cà chua, quất, thạch kiwi"
+          }
+        },
+        {
+          "image": "processed/_07温物0006.png",
+          "category": {
+            "ja": "温　物",
+            "en": "Simmered",
+            "zh_cn": "温物",
+            "zh_tw": "溫物",
+            "ko": "니모노",
+            "fr": "Mijoté",
+            "de": "Geschmort",
+            "th": "ต้ม",
+            "pt": "Cozido",
+            "pt_br": "Cozido",
+            "tl": "Nilaga",
+            "vi": "Hầm"
+          },
+          "description": {
+            "ja": "若午房と筍・蛍烏賊スープ煮　木の芽",
+            "en": "Burdock, Bamboo Shoot & Firefly Squid Soup, Kinome",
+            "zh_cn": "嫩牛蒡与竹笋・萤火乌贼汤煮 山椒叶",
+            "zh_tw": "嫩牛蒡與竹筍・螢火烏賊湯煮 山椒葉",
+            "ko": "어린 우엉과 죽순 · 반딧불 오징어 수프, 산초",
+            "fr": "Bardane, pousses de bambou & calamar luciole en soupe, kinome",
+            "de": "Klette, Bambussprossen & Glühwürmchen-Tintenfisch-Suppe, Kinome",
+            "th": "โกโบ หน่อไม้ & ปลาหมึกหิ่งห้อยในซุป คิโนเมะ",
+            "pt": "Bardana, broto de bambu & lula vaga-lume em sopa, kinome",
+            "pt_br": "Bardana, broto de bambu & lula vaga-lume em sopa, kinome",
+            "tl": "Burdock, Bamboo Shoot at Firefly Squid Soup, Kinome",
+            "vi": "Ngưu bàng, măng & mực đom đóm hầm súp, kinome"
+          }
+        },
+        {
+          "image": "processed/_08仕上0026.png",
+          "category": {
+            "ja": "仕　上",
+            "en": "Rice Course",
+            "zh_cn": "主食",
+            "zh_tw": "主食",
+            "ko": "식사",
+            "fr": "Riz",
+            "de": "Reis",
+            "th": "ข้าว",
+            "pt": "Arroz",
+            "pt_br": "Arroz",
+            "tl": "Kanin",
+            "vi": "Cơm"
+          },
+          "description": {
+            "ja": "鯛めし　胡麻　三つ葉　生姜\n香の物　味噌汁",
+            "en": "Sea Bream Rice, Sesame, Mitsuba, Ginger\nPickles, Miso Soup",
+            "zh_cn": "鲷鱼饭 芝麻 三叶芹 生姜\n腌菜 味增汤",
+            "zh_tw": "鯛魚飯 芝麻 三葉芹 生薑\n醃菜 味噌湯",
+            "ko": "도미밥, 참깨, 미쓰바, 생강\n절임, 된장국",
+            "fr": "Riz à la daurade, sésame, mitsuba, gingembre\nPickles, soupe miso",
+            "de": "Seebrassen-Reis, Sesam, Mitsuba, Ingwer\nPickles, Miso-Suppe",
+            "th": "ข้าวปลาไท งา มิทสึบะ ขิง\nผักดอง ซุปมิโซะ",
+            "pt": "Arroz de dourada, sésamo, mitsuba, gengibre\nPickles, sopa de miso",
+            "pt_br": "Arroz de dourada, gergelim, mitsuba, gengibre\nPickles, sopa de missô",
+            "tl": "Sea Bream Rice, Sesame, Mitsuba, Ginger\nPickles, Miso Soup",
+            "vi": "Cơm cá tráp, mè, mitsuba, gừng\nDưa muối, súp miso"
+          }
+        },
+        {
+          "image": "processed/_09水物_甘味_お薄0018.png",
+          "category": {
+            "ja": "水物・甘味",
+            "en": "Dessert",
+            "zh_cn": "甜品",
+            "zh_tw": "甜品",
+            "ko": "디저트",
+            "fr": "Dessert",
+            "de": "Dessert",
+            "th": "ของหวาน",
+            "pt": "Sobremesa",
+            "pt_br": "Sobremesa",
+            "tl": "Panghimagas",
+            "vi": "Tráng miệng"
+          },
+          "description": {
+            "ja": "日向夏のムース　苺ソース\n苺と桜あんの水饅頭　黒蜜　桜葉　桜花　お薄",
+            "en": "Hyuganatsu Citrus Mousse, Strawberry Sauce\nStrawberry & Sakura Mizu-manju, Matcha",
+            "zh_cn": "日向夏柑慕斯 草莓酱\n草莓与樱花馅水�的头 黑蜜 樱叶 樱花 薄茶",
+            "zh_tw": "日向夏柑慕斯 草莓醬\n草莓與櫻花餡水饅頭 黑蜜 櫻葉 櫻花 薄茶",
+            "ko": "휴가나쓰 시트러스 무스, 딸기 소스\n딸기와 벚꽃 앙금 미즈만주, 말차",
+            "fr": "Mousse d'agrume hyuganatsu, sauce fraise\nMizu-manju fraise & sakura, matcha",
+            "de": "Hyuganatsu-Zitrus-Mousse, Erdbeersoße\nErdbeer & Sakura Mizu-Manju, Matcha",
+            "th": "มูสส้มฮิวกะนัตสึ ซอสสตรอว์เบอร์รี่\nมิซุมันจูสตรอว์เบอร์รี่และซากุระ มัทฉะ",
+            "pt": "Mousse de citrino hyuganatsu, molho de morango\nMizu-manju de morango e sakura, matcha",
+            "pt_br": "Mousse de cítrico hyuganatsu, molho de morango\nMizu-manju de morango e sakura, matcha",
+            "tl": "Hyuganatsu Citrus Mousse, Strawberry Sauce\nStrawberry & Sakura Mizu-manju, Matcha",
+            "vi": "Mousse cam hyuganatsu, sốt dâu tây\nMizu-manju dâu và sakura, matcha"
+          }
+        },
+        {
+          "image": "processed/_10コース集合0014.png",
+          "category_is_course_summary": true,
+          "category": {
+            "ja": "青藍色コース　¥18,000",
+            "en": "Seiran Blue Course  ¥18,000",
+            "zh_cn": "青蓝色套餐  ¥18,000",
+            "zh_tw": "青藍色套餐  ¥18,000",
+            "ko": "세이란 블루 코스  ¥18,000",
+            "fr": "Menu Seiran  ¥18,000",
+            "de": "Menü Seiran  ¥18,000",
+            "th": "เมนูเซรัน  ¥18,000",
+            "pt": "Menu Seiran  ¥18,000",
+            "pt_br": "Menu Seiran  ¥18,000",
+            "tl": "Menu Seiran  ¥18,000",
+            "vi": "Thực đơn Seiran  ¥18,000"
+          },
+          "description": {
+            "ja": "", "en": "", "zh_cn": "", "zh_tw": "",
+            "ko": "", "fr": "", "de": "", "th": "",
+            "pt": "", "pt_br": "", "tl": "", "vi": ""
+          }
+        }
+      ]
+    },
+
+    "kikyou": {
+      "name": {
+        "ja": "桔梗色（ききょういろ）コース",
+        "en": "Kikyou Purple Course",
+        "zh_cn": "桔梗色套餐",
+        "zh_tw": "桔梗色套餐",
+        "ko": "키쿄 퍼플 코스",
+        "fr": "Menu Kikyou — Violet Campanule",
+        "de": "Menü Kikyou — Glockenblumen-Violett",
+        "th": "เมนูคิเคียว — สีม่วงดอกเบลล์",
+        "pt": "Menu Kikyou — Violeta Campânula",
+        "pt_br": "Menu Kikyou — Violeta Campânula",
+        "tl": "Menu Kikyou — Lila ng Kampanula",
+        "vi": "Thực đơn Kikyou — Tím hoa chuông"
+      },
+      "price": 23000,
+      "title_image": "processed/入口のお花0001.png",
+      "ending_image": "processed/入口のお花0001.png",
+      "dishes": [
+        {
+          "image": "processed/_01先付0006.png",
+          "category": {
+            "ja": "先　付",
+            "en": "Appetizer",
+            "zh_cn": "先付", "zh_tw": "先付", "ko": "사키즈케",
+            "fr": "Amuse-bouche", "de": "Vorspeise", "th": "อาหารเรียกน้ำย่อย",
+            "pt": "Entrada", "pt_br": "Entrada", "tl": "Pampagana", "vi": "Khai vị"
+          },
+          "description": {
+            "ja": "三宝柑盛り　春の吹き寄せ\n平貝　赤貝　うるい　こごみ　一寸豆　花弁",
+            "en": "Sanpokan Citrus Bowl, Spring Medley\nPen Shell, Ark Shell, Urui, Kogomi, Broad Bean, Petals",
+            "zh_cn": "三宝柑盛 春之吹寄\n平贝 赤贝 萱草 荚果蕨 蚕豆 花瓣",
+            "zh_tw": "三寶柑盛 春之吹寄\n平貝 赤貝 萱草 莢果蕨 蠶豆 花瓣",
+            "ko": "산포칸 감귤 모둠, 봄 후키요세\n키누가이, 아카가이, 우루이, 고고미, 잠두, 꽃잎",
+            "fr": "Bol d'agrumes sanpokan, assortiment printanier\nPeigne, coque, urui, fougère, fève, pétales",
+            "de": "Sanpokan-Zitrus-Schale, Frühlingsmedley\nPilgermuschel, Herzmuschel, Urui, Kogomi, Saubohne, Blüten",
+            "th": "ถ้วยส้มซันโปกัน ของฤดูใบไม้ผลิรวม\nหอยพัด หอยแครง อุรุอิ โคโกมิ ถั่วปากอ้า กลีบดอกไม้",
+            "pt": "Taça de citrino sanpokan, medley primaveril\nVieira, berbigão, urui, kogomi, fava, pétalas",
+            "pt_br": "Taça de cítrico sanpokan, medley primaveril\nVieira, berbigão, urui, kogomi, fava, pétalas",
+            "tl": "Sanpokan Citrus Bowl, Spring Medley\nPen Shell, Ark Shell, Urui, Kogomi, Broad Bean, Petals",
+            "vi": "Bát cam sanpokan, tổng hợp mùa xuân\nSò điệp, sò huyết, urui, kogomi, đậu tằm, cánh hoa"
+          }
+        },
+        {
+          "image": "processed/_02吸物0015.png",
+          "category": {
+            "ja": "吸　物",
+            "en": "Clear Soup",
+            "zh_cn": "吸物", "zh_tw": "吸物", "ko": "스이모노",
+            "fr": "Soupe claire", "de": "Klare Suppe", "th": "ซุปใส",
+            "pt": "Sopa clara", "pt_br": "Sopa clara", "tl": "Malinaw na Sabaw", "vi": "Súp trong"
+          },
+          "description": {
+            "ja": "蛤潮汁　あおさ海苔　独活　筍　若布　木の芽",
+            "en": "Clam Broth, Sea Lettuce, Udo, Bamboo Shoot, Wakame, Kinome",
+            "zh_cn": "蛤蜊潮汁 石莼海苔 独活 竹笋 裙带菜 山椒叶",
+            "zh_tw": "蛤蜊潮汁 石蓴海苔 獨活 竹筍 裙帶菜 山椒葉",
+            "ko": "대합 국물, 파래, 독활, 죽순, 미역, 산초",
+            "fr": "Bouillon de palourdes, aonori, udo, bambou, wakame, kinome",
+            "de": "Muschel-Brühe, Aonori, Udo, Bambus, Wakame, Kinome",
+            "th": "น้ำซุปหอยลาย สาหร่ายอาโอซะ อุโดะ หน่อไม้ วากาเมะ คิโนเมะ",
+            "pt": "Caldo de amêijoa, alface-do-mar, udo, bambu, wakame, kinome",
+            "pt_br": "Caldo de vôngole, alface-do-mar, udo, bambu, wakame, kinome",
+            "tl": "Clam Broth, Sea Lettuce, Udo, Bamboo Shoot, Wakame, Kinome",
+            "vi": "Nước dùng nghêu, rong biển, udo, măng, wakame, kinome"
+          }
+        },
+        {
+          "image": "processed/_03造里0002.png",
+          "category": {
+            "ja": "造　里",
+            "en": "Sashimi",
+            "zh_cn": "造里", "zh_tw": "造里", "ko": "사시미",
+            "fr": "Sashimi", "de": "Sashimi", "th": "ซาชิมิ",
+            "pt": "Sashimi", "pt_br": "Sashimi", "tl": "Sashimi", "vi": "Sashimi"
+          },
+          "description": {
+            "ja": "春子鯛　本鮪　蒸し鮑　肝ソース\nあしらい一式",
+            "en": "Baby Sea Bream, Bluefin Tuna, Steamed Abalone, Liver Sauce\nFull Garnish",
+            "zh_cn": "春子鲷 蓝鳍金枪鱼 蒸�的鱼 肝酱\n配菜一式",
+            "zh_tw": "春子鯛 藍鰭鮪魚 蒸鮑 肝醬\n配菜一式",
+            "ko": "봄 도미, 참다랑어, 찐 전복, 간 소스\n곁들임 일식",
+            "fr": "Daurade de printemps, thon rouge, ormeau vapeur, sauce au foie\nGarniture complète",
+            "de": "Frühjahrs-Seebrasse, Blauflossenthunfisch, gedämpfte Abalone, Lebersauce\nVollständige Garnitur",
+            "th": "ปลาไทฤดูใบไม้ผลิ ทูน่าครีบน้ำเงิน หอยเป๋าฮื้อนึ่ง ซอสตับ\nเครื่องเคียงครบชุด",
+            "pt": "Dourada primaveril, atum rabilho, abalone no vapor, molho de fígado\nGuarnição completa",
+            "pt_br": "Dourada primaveril, atum rabilho, abalone no vapor, molho de fígado\nGuarnição completa",
+            "tl": "Baby Sea Bream, Bluefin Tuna, Steamed Abalone, Liver Sauce\nFull Garnish",
+            "vi": "Cá tráp non, cá ngừ vây xanh, bào ngư hấp, sốt gan\nGarnish đầy đủ"
+          }
+        },
+        {
+          "image": "processed2/04凌ぎ0016.png",
+          "category": {
+            "ja": "凌　ぎ",
+            "en": "Palate Bridge",
+            "zh_cn": "凌",
+            "zh_tw": "凌",
+            "ko": "시노기",
+            "fr": "Entremets",
+            "de": "Zwischengang",
+            "th": "จานคั่น",
+            "pt": "Entremez",
+            "pt_br": "Entremez",
+            "tl": "Palate Bridge",
+            "vi": "Món chuyển tiếp"
+          },
+          "description": {
+            "ja": "穴子寿司　木の芽　山葵つんつん漬け",
+            "en": "Conger Eel Sushi, Kinome, Wasabi Tsun-tsun Pickles",
+            "zh_cn": "星鳗寿司 山椒叶 山葵渍",
+            "zh_tw": "星鰻壽司 山椒葉 山葵漬",
+            "ko": "붕장어 스시, 산초, 와사비 츤츤즈케",
+            "fr": "Sushi d'anguille de mer, kinome, pickles au wasabi",
+            "de": "Seeaal-Sushi, Kinome, Wasabi-Tsun-tsun-Pickles",
+            "th": "ซูชิปลาไหลทะเล คิโนเมะ วาซาบิซึนซึนซึเกะ",
+            "pt": "Sushi de enguia do mar, kinome, pickles de wasabi",
+            "pt_br": "Sushi de enguia do mar, kinome, pickles de wasabi",
+            "tl": "Conger Eel Sushi, Kinome, Wasabi Tsun-tsun Pickles",
+            "vi": "Sushi lươn biển, kinome, dưa muối wasabi"
+          }
+        },
+        {
+          "image": "processed/_04焼物0007.png",
+          "category": {
+            "ja": "焼　物",
+            "en": "Grilled",
+            "zh_cn": "烧物", "zh_tw": "燒物", "ko": "야키모노",
+            "fr": "Grillé", "de": "Gegrillt", "th": "ย่าง",
+            "pt": "Grelhado", "pt_br": "Grelhado", "tl": "Inihaw", "vi": "Nướng"
+          },
+          "description": {
+            "ja": "淡路島の玉葱ローストとイチボの炙り\nグレイビーソース　フライドオニオン　山葵",
+            "en": "Awaji Island Onion Roast & Seared Ichibo Beef\nGravy Sauce, Fried Onion, Wasabi",
+            "zh_cn": "�的路岛洋葱烤与臀肉炙烤\n肉汁酱 炸洋葱 山葵",
+            "zh_tw": "淡路島洋蔥烤與臀肉炙烤\n肉汁醬 炸洋蔥 山葵",
+            "ko": "아와지시마 양파 로스트와 이치보 소고기 구이\n그레이비 소스, 프라이드 어니언, 와사비",
+            "fr": "Oignon rôti d'Awaji & bœuf ichibo poêlé\nSauce gravy, oignon frit, wasabi",
+            "de": "Awaji-Zwiebel-Braten & gegrilltes Ichibo-Rind\nBratensoße, Röstzwiebeln, Wasabi",
+            "th": "หัวหอมอาวาจิย่างกับเนื้อวัวอิจิโบะ\nซอสเกรวี่ หัวหอมทอด วาซาบิ",
+            "pt": "Cebola assada de Awaji & bife ichibo selado\nMolho gravy, cebola frita, wasabi",
+            "pt_br": "Cebola assada de Awaji & bife ichibo selado\nMolho gravy, cebola frita, wasabi",
+            "tl": "Awaji Island Onion Roast & Seared Ichibo Beef\nGravy Sauce, Fried Onion, Wasabi",
+            "vi": "Hành tây Awaji nướng & thịt bò ichibo áp chảo\nSốt gravy, hành chiên, wasabi"
+          }
+        },
+        {
+          "image": "processed2/08揚物0023.png",
+          "category": {
+            "ja": "揚　物",
+            "en": "Deep Fried",
+            "zh_cn": "炸物", "zh_tw": "炸物", "ko": "아게모노",
+            "fr": "Friture", "de": "Frittiert", "th": "ทอด",
+            "pt": "Frito", "pt_br": "Frito", "tl": "Pinirito", "vi": "Chiên"
+          },
+          "description": {
+            "ja": "帆立貝フリット　トリュフバター\n芽キャベツ　アスパラ　抹茶仕立のソースで",
+            "en": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
+            "zh_cn": "扇贝油炸 松露黄油\n抱子甘蓝 芦笋 抹茶酱",
+            "zh_tw": "扇貝油炸 松露奶油\n抱子甘藍 蘆筍 抹茶醬",
+            "ko": "가리비 프리토, 트러플 버터\n방울양배추, 아스파라거스, 말차 소스",
+            "fr": "Fritto de Saint-Jacques, beurre de truffe\nChoux de Bruxelles, asperges, sauce matcha",
+            "de": "Jakobsmuschel-Fritto, Trüffelbutter\nRosenkohl, Spargel, Matcha-Sauce",
+            "th": "หอยเชลล์ทอด เนยทรัฟเฟิล\nกะหล่ำดาว หน่อไม้ฝรั่ง ซอสมัทฉะ",
+            "pt": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, espargos, molho de matcha",
+            "pt_br": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, aspargos, molho de matcha",
+            "tl": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
+            "vi": "Sò điệp chiên giòn, bơ truffle\nBắp cải tí hon, măng tây, sốt matcha"
+          }
+        },
+        {
+          "image": "processed2/07口直し0010.png",
+          "category": {
+            "ja": "口直し",
+            "en": "Palate Cleanser",
+            "zh_cn": "口直", "zh_tw": "口直", "ko": "입가심",
+            "fr": "Trou normand", "de": "Gaumenfeger", "th": "ล้างปาก",
+            "pt": "Limpa-palato", "pt_br": "Limpa-palato", "tl": "Palate Cleanser", "vi": "Món thanh vị"
+          },
+          "description": {
+            "ja": "春子鯛博多押し　おいしいトマト　人参ラペ",
+            "en": "Baby Sea Bream Hakata-style Pressed Sushi, Tomato, Carrot Rapé",
+            "zh_cn": "春子鲷博多押寿司 美味番茄 胡萝卜丝",
+            "zh_tw": "春子鯛博多押壽司 美味番茄 胡蘿蔔絲",
+            "ko": "봄 도미 하카타 오시즈시, 토마토, 당근 라페",
+            "fr": "Sushi pressé de daurade style Hakata, tomate, rapé de carottes",
+            "de": "Seebrassen-Hakata-Pressushi, Tomate, Karotten-Rapé",
+            "th": "ซูชิกดปลาไทสไตล์ฮากาตะ มะเขือเทศ แครอทราเป้",
+            "pt": "Sushi prensado de dourada estilo Hakata, tomate, rapé de cenoura",
+            "pt_br": "Sushi prensado de dourada estilo Hakata, tomate, rapé de cenoura",
+            "tl": "Baby Sea Bream Hakata-style Pressed Sushi, Tomato, Carrot Rapé",
+            "vi": "Sushi ép cá tráp kiểu Hakata, cà chua, cà rốt bào"
+          }
+        },
+        {
+          "image": "processed/_07温物0006.png",
+          "category": {
+            "ja": "温　物",
+            "en": "Simmered",
+            "zh_cn": "温物", "zh_tw": "溫物", "ko": "니모노",
+            "fr": "Mijoté", "de": "Geschmort", "th": "ต้ม",
+            "pt": "Cozido", "pt_br": "Cozido", "tl": "Nilaga", "vi": "Hầm"
+          },
+          "description": {
+            "ja": "春蕪　若布餡かけ　うすい豆",
+            "en": "Spring Turnip, Wakame Sauce, Green Peas",
+            "zh_cn": "春芜菁 裙带菜酱 青豆",
+            "zh_tw": "春蕪菁 裙帶菜醬 青豆",
+            "ko": "봄 순무, 미역 소스, 완두콩",
+            "fr": "Navet de printemps, sauce wakame, petits pois",
+            "de": "Frühlingsrübe, Wakame-Sauce, Erbsen",
+            "th": "หัวผักกาดฤดูใบไม้ผลิ ซอสวากาเมะ ถั่วลันเตา",
+            "pt": "Nabo primaveril, molho de wakame, ervilhas",
+            "pt_br": "Nabo primaveril, molho de wakame, ervilhas",
+            "tl": "Spring Turnip, Wakame Sauce, Green Peas",
+            "vi": "Củ cải xuân, sốt wakame, đậu Hà Lan"
+          }
+        },
+        {
+          "image": "processed/_08仕上0026.png",
+          "category": {
+            "ja": "仕　上",
+            "en": "Rice Course",
+            "zh_cn": "主食", "zh_tw": "主食", "ko": "식사",
+            "fr": "Riz", "de": "Reis", "th": "ข้าว",
+            "pt": "Arroz", "pt_br": "Arroz", "tl": "Kanin", "vi": "Cơm"
+          },
+          "description": {
+            "ja": "金目鯛と若午房土鍋ご飯\n香の物　味噌汁",
+            "en": "Alfonsino & Young Burdock Clay Pot Rice\nPickles, Miso Soup",
+            "zh_cn": "金目鲷与嫩牛蒡土锅饭\n腌菜 味增汤",
+            "zh_tw": "金目鯛與嫩牛蒡土鍋飯\n醃菜 味噌湯",
+            "ko": "금눈돔과 어린 우엉 토나베밥\n절임, 된장국",
+            "fr": "Riz en cocotte alfonsino & jeune bardane\nPickles, soupe miso",
+            "de": "Alfonsino & Junge Klette Tontopf-Reis\nPickles, Miso-Suppe",
+            "th": "ข้าวหม้อดินปลาคินเมไดกับโกโบอ่อน\nผักดอง ซุปมิโซะ",
+            "pt": "Arroz em panela de barro de alfonsino e bardana jovem\nPickles, sopa de miso",
+            "pt_br": "Arroz em panela de barro de alfonsino e bardana jovem\nPickles, sopa de missô",
+            "tl": "Alfonsino & Young Burdock Clay Pot Rice\nPickles, Miso Soup",
+            "vi": "Cơm nồi đất cá alfonsino và ngưu bàng non\nDưa muối, súp miso"
+          }
+        },
+        {
+          "image": "processed/_09水物_甘味_お薄0018.png",
+          "category": {
+            "ja": "水物・甘味",
+            "en": "Dessert",
+            "zh_cn": "甜品", "zh_tw": "甜品", "ko": "디저트",
+            "fr": "Dessert", "de": "Dessert", "th": "ของหวาน",
+            "pt": "Sobremesa", "pt_br": "Sobremesa", "tl": "Panghimagas", "vi": "Tráng miệng"
+          },
+          "description": {
+            "ja": "日向夏のムース　苺ソース\n苺と桜あんの水饅頭　黒蜜　桜葉　桜花　お薄",
+            "en": "Hyuganatsu Citrus Mousse, Strawberry Sauce\nStrawberry & Sakura Mizu-manju, Matcha",
+            "zh_cn": "日向夏柑慕斯 草莓酱\n草莓与樱花馅水馒头 黑蜜 樱叶 樱花 薄茶",
+            "zh_tw": "日向夏柑慕斯 草莓醬\n草莓與櫻花餡水饅頭 黑蜜 櫻葉 櫻花 薄茶",
+            "ko": "휴가나쓰 시트러스 무스, 딸기 소스\n딸기와 벚꽃 앙금 미즈만주, 말차",
+            "fr": "Mousse d'agrume hyuganatsu, sauce fraise\nMizu-manju fraise & sakura, matcha",
+            "de": "Hyuganatsu-Zitrus-Mousse, Erdbeersoße\nErdbeer & Sakura Mizu-Manju, Matcha",
+            "th": "มูสส้มฮิวกะนัตสึ ซอสสตรอว์เบอร์รี่\nมิซุมันจูสตรอว์เบอร์รี่และซากุระ มัทฉะ",
+            "pt": "Mousse de citrino hyuganatsu, molho de morango\nMizu-manju de morango e sakura, matcha",
+            "pt_br": "Mousse de cítrico hyuganatsu, molho de morango\nMizu-manju de morango e sakura, matcha",
+            "tl": "Hyuganatsu Citrus Mousse, Strawberry Sauce\nStrawberry & Sakura Mizu-manju, Matcha",
+            "vi": "Mousse cam hyuganatsu, sốt dâu tây\nMizu-manju dâu và sakura, matcha"
+          }
+        }
+      ]
+    }
+  }
+}
