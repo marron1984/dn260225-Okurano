@@ -377,7 +377,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
             f"fontfile='{font}':fontsize=40:fontcolor=#{COLOR_GRAY}:"  # →40
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += 34
+        y_pos += 50
     y_pos += 34
 
     # 予約案内
