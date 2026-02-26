@@ -277,13 +277,13 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
                 f"alpha={alpha_d}"
             )
 
-    # 下部ダークグラデーション（テキストエリアの背景を段階的に暗く）
+    # 下部ダークグラデーション（テキスト周辺のみ、写真を覆わない）
     dark_overlay = ""
     if not is_summary and description.strip():
         dark_overlay = (
-            "drawbox=y=ih*0.55:w=iw:h=ih*0.10:color=black@0.15:t=fill,"
-            "drawbox=y=ih*0.65:w=iw:h=ih*0.10:color=black@0.20:t=fill,"
-            "drawbox=y=ih*0.75:w=iw:h=ih*0.25:color=black@0.25:t=fill,"
+            "drawbox=y=ih*0.72:w=iw:h=ih*0.06:color=black@0.12:t=fill,"
+            "drawbox=y=ih*0.78:w=iw:h=ih*0.06:color=black@0.18:t=fill,"
+            "drawbox=y=ih*0.84:w=iw:h=ih*0.16:color=black@0.28:t=fill,"
         )
 
     vf = (
@@ -341,7 +341,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
     )
     y_pos += 65
 
-    # 住所
+    # 住所（さらに拡大）
     for i, line in enumerate(address_lines):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
@@ -349,10 +349,10 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(0.5 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=26:fontcolor=#{COLOR_GRAY}:"  # 20→26
+            f"fontfile='{font}':fontsize=32:fontcolor=#{COLOR_GRAY}:"  # 26→32
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += 34
+        y_pos += 42
     y_pos += 22
 
     # 電話番号
