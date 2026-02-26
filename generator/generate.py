@@ -41,8 +41,8 @@ COURSE_TIMING = {
         "title": 4.375,    # 3.5 × 1.25
         "clip": 3.125,     # 2.5 × 1.25
         "ending": 5.0,     # 4.0 × 1.25
-        "title_brightness": -0.30,   # 暗く → 文字を見やすく
-        "ending_brightness": -0.35,  # 暗く → 文字を見やすく
+        "title_brightness": -0.45,   # さらに暗く → 白文字を際立たせる
+        "ending_brightness": -0.50,  # さらに暗く → 文字を際立たせる
     },
 }
 
@@ -176,8 +176,8 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
     esc_price = escape_ffmpeg_text(f"¥{price:,}")
 
     alpha1, slide1 = make_slide_up_alpha(0.2, 0.6)
-    alpha2, slide2 = make_slide_up_alpha(0.5, 0.6)
-    alpha3, slide3 = make_slide_up_alpha(0.7, 0.5)
+    alpha2, slide2 = make_slide_up_alpha(0.3, 0.5)   # コース名を早く表示
+    alpha3, slide3 = make_slide_up_alpha(0.5, 0.5)
 
     # 店名のフォントサイズ（日本語は漢字なので大きめ）
     store_size = 68 if lang == "ja" else 52
@@ -193,15 +193,15 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
         f"fontfile='{font}':fontsize={store_size}:fontcolor=#{COLOR_GOLD}:"
         f"x=(w-text_w)/2:y=(h/2-{store_size})+({slide1}):"
         f"alpha={alpha1},"
-        # コース名
+        # コース名（白文字で目立たせる）
         f"drawtext=text='{esc_course}':"
-        f"fontfile='{font}':fontsize=28:fontcolor=#{COLOR_GRAY}:"
+        f"fontfile='{font}':fontsize=32:fontcolor=#{COLOR_WHITE}:"
         f"x=(w-text_w)/2:y=(h/2+40)+({slide2}):"
         f"alpha={alpha2},"
         # 価格
         f"drawtext=text='{esc_price}':"
-        f"fontfile='{font}':fontsize=26:fontcolor=#{COLOR_GRAY}:"
-        f"x=(w-text_w)/2:y=(h/2+78)+({slide3}):"
+        f"fontfile='{font}':fontsize=30:fontcolor=#{COLOR_WHITE}:"
+        f"x=(w-text_w)/2:y=(h/2+84)+({slide3}):"
         f"alpha={alpha3}"
     )
 
@@ -299,11 +299,11 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
     hours_lines = store_data["hours"].get(lang, store_data["hours"]["en"]).split("\n")
     reservation_lines = store_data["reservation"].get(lang, store_data["reservation"]["en"]).split("\n")
 
-    store_size = 60 if lang in ("ja", "zh_cn", "zh_tw") else 48
+    store_size = 74 if lang in ("ja", "zh_cn", "zh_tw") else 58   # 60→74
 
     # テキスト要素を順番に配置
     elements = []
-    y_pos = 180
+    y_pos = 150
 
     # 店名
     alpha, slide = make_slide_up_alpha(0.2, 0.5)
@@ -312,16 +312,16 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         f"fontfile='{font}':fontsize={store_size}:fontcolor=#{COLOR_GOLD}:"
         f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
     )
-    y_pos += store_size + 20
+    y_pos += store_size + 24
 
     # サブタイトル
     alpha, slide = make_slide_up_alpha(0.3, 0.5)
     elements.append(
         f"drawtext=text='{subtitle}':"
-        f"fontfile='{font}':fontsize=22:fontcolor=#{COLOR_GRAY}:"
+        f"fontfile='{font}':fontsize=28:fontcolor=#{COLOR_GRAY}:"  # 22→28
         f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
     )
-    y_pos += 60
+    y_pos += 65
 
     # 住所
     for i, line in enumerate(address_lines):
@@ -331,20 +331,20 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(0.5 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=20:fontcolor=#{COLOR_GRAY}:"
+            f"fontfile='{font}':fontsize=26:fontcolor=#{COLOR_GRAY}:"  # 20→26
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += 28
-    y_pos += 20
+        y_pos += 34
+    y_pos += 22
 
     # 電話番号
     alpha, slide = make_slide_up_alpha(0.8, 0.4)
     elements.append(
         f"drawtext=text='{phone}':"
-        f"fontfile='{font}':fontsize=38:fontcolor=#{COLOR_WHITE}:"
+        f"fontfile='{font}':fontsize=48:fontcolor=#{COLOR_WHITE}:"  # 38→48
         f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
     )
-    y_pos += 60
+    y_pos += 70
 
     # 営業時間
     for i, line in enumerate(hours_lines):
@@ -354,18 +354,18 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(1.0 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=20:fontcolor=#{COLOR_GRAY}:"
+            f"fontfile='{font}':fontsize=26:fontcolor=#{COLOR_GRAY}:"  # 20→26
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += 28
-    y_pos += 30
+        y_pos += 34
+    y_pos += 34
 
     # 予約案内
     for i, line in enumerate(reservation_lines):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
             continue
-        size = 36 if i == 0 else 48  # TableCheck を大きく
+        size = 44 if i == 0 else 58  # 36→44, TableCheck 48→58
         color = COLOR_GOLD if i == 0 else COLOR_WHITE
         alpha, slide = make_slide_up_alpha(1.3 + i * 0.15, 0.5)
         elements.append(
@@ -373,7 +373,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
             f"fontfile='{font}':fontsize={size}:fontcolor=#{color}:"
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
-        y_pos += size + 10
+        y_pos += size + 14
 
     vf = (
         f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
