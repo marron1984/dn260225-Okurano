@@ -36,20 +36,55 @@ COLOR_GOLD = "E8D0A0"
 COLOR_WHITE = "FFFFFF"
 COLOR_GRAY = "AAAAAA"
 
-# 言語ごとのフォント設定
-FONTS = {
-    "ja":    "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
-    "en":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "zh_cn": "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
-    "zh_tw": "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
-    "ko":    "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
-    "fr":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "de":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "th":    "/usr/share/fonts/truetype/noto/NotoSerifThai-Regular.ttf",
-    "pt":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "pt_br": "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "tl":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
-    "vi":    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+# 言語ごとのフォント設定（候補パスを順に検索）
+FONT_CANDIDATES = {
+    "cjk": [
+        "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
+        "/usr/share/fonts/noto-cjk/NotoSerifCJK-Regular.ttc",
+        "/usr/share/fonts/google-noto-serif-cjk-ttc/NotoSerifCJK-Regular.ttc",
+    ],
+    "latin": [
+        "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+        "/usr/share/fonts/noto/NotoSerif-Regular.ttf",
+        "/usr/share/fonts/google-noto-serif/NotoSerif-Regular.ttf",
+    ],
+    "thai": [
+        "/usr/share/fonts/truetype/noto/NotoSerifThai-Regular.ttf",
+        "/usr/share/fonts/noto/NotoSerifThai-Regular.ttf",
+        "/usr/share/fonts/google-noto/NotoSerifThai-Regular.ttf",
+    ],
+}
+
+def _find_font(candidates):
+    """候補リストから最初に見つかったフォントパスを返す"""
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    # fc-list でフォールバック検索
+    try:
+        r = subprocess.run(["fc-list", ":style=Regular", "-f", "%{file}\n"],
+                           capture_output=True, text=True, timeout=5)
+        for line in r.stdout.strip().split("\n"):
+            if "NotoSerif" in line and line.endswith((".ttf", ".ttc")):
+                return line
+    except Exception:
+        pass
+    return candidates[0]
+
+_font_cache = {}
+def _resolve_fonts():
+    """起動時にフォントパスを解決してキャッシュする"""
+    if _font_cache:
+        return
+    _font_cache["cjk"] = _find_font(FONT_CANDIDATES["cjk"])
+    _font_cache["latin"] = _find_font(FONT_CANDIDATES["latin"])
+    _font_cache["thai"] = _find_font(FONT_CANDIDATES["thai"])
+
+FONT_MAP = {
+    "ja": "cjk", "zh_cn": "cjk", "zh_tw": "cjk", "ko": "cjk",
+    "th": "thai",
+    "en": "latin", "fr": "latin", "de": "latin",
+    "pt": "latin", "pt_br": "latin", "tl": "latin", "vi": "latin",
 }
 
 # 言語表示名（ログ用）
@@ -121,7 +156,9 @@ def escape_ffmpeg_expr(expr):
 
 def get_font(lang):
     """言語に応じたフォントパスを返す"""
-    return FONTS.get(lang, FONTS["en"])
+    _resolve_fonts()
+    key = FONT_MAP.get(lang, "latin")
+    return _font_cache.get(key, _font_cache.get("latin", ""))
 
 
 def run_ffmpeg(args, desc=""):

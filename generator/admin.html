@@ -6,459 +6,207 @@
 <title>大嵓埜 — 管理画面</title>
 <style>
   :root {
-    --bg: #0e0e10;
-    --bg2: #18181c;
-    --bg3: #222228;
-    --gold: #E8D0A0;
-    --gold-dim: #b8a070;
-    --text: #ddd;
-    --text2: #888;
-    --text3: #555;
-    --border: #333;
-    --accent: #4a8;
-    --error: #e55;
+    --bg: #0e0e10; --bg2: #18181c; --bg3: #222228;
+    --gold: #E8D0A0; --gold-dim: #b8a070;
+    --text: #ddd; --text2: #888; --text3: #555;
+    --border: #333; --accent: #4a8; --error: #e55;
     --radius: 8px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
+    background: var(--bg); color: var(--text);
+    font-family: "Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    font-size: 14px; line-height: 1.6;
   }
-
-  /* ヘッダー */
   .header {
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
   }
   .header h1 {
-    font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    color: var(--gold);
+    font-family: "Hiragino Mincho ProN","Noto Serif JP",serif;
+    font-size: 1.4rem; font-weight: 400; letter-spacing: 0.3em; color: var(--gold);
   }
-  .header-sub {
-    font-size: 0.75rem;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-  }
-
-  /* ナビゲーション */
+  .header-right { display: flex; align-items: center; gap: 0.8rem; }
+  .header-sub { font-size: 0.75rem; color: var(--text3); letter-spacing: 0.1em; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .status-dot.ok { background: var(--accent); }
+  .status-dot.err { background: var(--error); }
   .nav {
-    display: flex;
-    gap: 0;
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 0 1.5rem;
+    display: flex; gap: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 1.5rem;
   }
   .nav-tab {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text2);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
+    padding: 0.7rem 1.5rem; font-size: 0.85rem; color: var(--text2);
+    background: none; border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
   }
   .nav-tab:hover { color: var(--text); }
-  .nav-tab.active {
-    color: var(--gold);
-    border-bottom-color: var(--gold);
-  }
-
-  /* メインコンテンツ */
+  .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
   .main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
   .page { display: none; }
   .page.active { display: block; }
-
-  /* 共通コンポーネント */
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .card-title {
-    font-size: 0.8rem;
-    color: var(--text2);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; margin-bottom: 1rem; }
+  .card-title { font-size: 0.8rem; color: var(--text2); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1.2rem;
-    font-family: inherit;
-    font-size: 0.85rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--bg3);
-    color: var(--text);
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 1.2rem; font-family: inherit; font-size: 0.85rem;
+    border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+    transition: all 0.2s; background: var(--bg3); color: var(--text);
   }
   .btn:hover { border-color: var(--text2); }
-  .btn-gold {
-    background: var(--gold);
-    color: #111;
-    border-color: var(--gold);
-    font-weight: 600;
-  }
+  .btn-gold { background: var(--gold); color: #111; border-color: var(--gold); font-weight: 600; }
   .btn-gold:hover { background: var(--gold-dim); border-color: var(--gold-dim); }
-  .btn-gold:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
   .btn-sm { padding: 0.3rem 0.8rem; font-size: 0.78rem; }
-
-  input[type="text"], textarea, select {
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 0.5rem 0.7rem;
-    font-family: inherit;
-    font-size: 0.85rem;
-    width: 100%;
-    outline: none;
-    transition: border-color 0.2s;
+  .btn-danger { border-color: var(--error); color: var(--error); }
+  input[type="text"], input[type="password"], textarea, select {
+    background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.5rem 0.7rem; font-family: inherit; font-size: 0.85rem;
+    width: 100%; outline: none; transition: border-color 0.2s;
   }
-  input[type="text"]:focus, textarea:focus {
-    border-color: var(--gold-dim);
-  }
+  input:focus, textarea:focus { border-color: var(--gold-dim); }
   textarea { resize: vertical; min-height: 60px; }
   label { font-size: 0.8rem; color: var(--text2); display: block; margin-bottom: 0.3rem; }
 
-  /* チェックボックスグリッド */
-  .check-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-  }
+  /* チェックボックス */
+  .check-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
   .check-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.7rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.82rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0.7rem; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; cursor: pointer; transition: all 0.2s; font-size: 0.82rem;
   }
   .check-item:hover { border-color: var(--text3); }
-  .check-item.checked {
-    border-color: var(--gold-dim);
-    background: rgba(232, 208, 160, 0.06);
-  }
+  .check-item.checked { border-color: var(--gold-dim); background: rgba(232,208,160,0.06); }
   .check-item input { display: none; }
   .check-dot {
-    width: 16px; height: 16px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
+    width: 16px; height: 16px; border: 2px solid var(--border); border-radius: 3px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
   }
-  .check-item.checked .check-dot {
-    border-color: var(--gold);
-    background: var(--gold);
-  }
+  .check-item.checked .check-dot { border-color: var(--gold); background: var(--gold); }
   .check-item.checked .check-dot::after {
-    content: '';
-    width: 6px; height: 10px;
-    border: solid #111; border-width: 0 2px 2px 0;
-    transform: rotate(45deg) translate(-1px, -1px);
+    content:''; width: 6px; height: 10px;
+    border: solid #111; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px,-1px);
   }
 
-  /* ===== メニュー編集ページ ===== */
-  .editor-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 1rem;
-    min-height: 600px;
+  /* 設定画面 */
+  .setup-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    display: flex; align-items: center; justify-content: center; z-index: 200;
   }
-  .dish-list {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--bg2);
-    overflow: hidden;
+  .setup-box {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 2rem; max-width: 480px; width: 90%;
   }
-  .dish-list-header {
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 0;
-  }
-  .dish-list-header .btn-sm {
-    flex: 1;
-    text-align: center;
-    justify-content: center;
-    border-radius: 0;
-  }
+  .setup-box h2 { font-size: 1.1rem; color: var(--gold); margin-bottom: 0.3rem; letter-spacing: 0.2em; }
+  .setup-box p { font-size: 0.8rem; color: var(--text2); margin-bottom: 1.2rem; line-height: 1.7; }
+  .setup-field { margin-bottom: 1rem; }
+  .setup-hint { font-size: 0.72rem; color: var(--text3); margin-top: 0.3rem; }
+
+  /* エディタ */
+  .editor-layout { display: grid; grid-template-columns: 280px 1fr; gap: 1rem; min-height: 600px; }
+  .dish-list { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg2); overflow: hidden; }
+  .dish-list-header { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; gap: 0; }
+  .dish-list-header .btn-sm { flex:1; text-align:center; justify-content:center; border-radius:0; }
   .dish-list-header .btn-sm:first-child { border-radius: 4px 0 0 4px; }
-  .dish-list-header .btn-sm:last-child { border-radius: 0 4px 4px 0; border-left: none; }
-  .dish-list-header .btn-sm.active {
-    background: var(--gold);
-    color: #111;
-    border-color: var(--gold);
-  }
+  .dish-list-header .btn-sm:last-child { border-radius: 0 4px 4px 0; border-left:none; }
+  .dish-list-header .btn-sm.active { background: var(--gold); color: #111; border-color: var(--gold); }
   .dish-item {
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    transition: background 0.15s;
+    padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer;
+    display: flex; align-items: center; gap: 0.7rem; transition: background 0.15s;
   }
   .dish-item:hover { background: var(--bg3); }
-  .dish-item.active { background: rgba(232, 208, 160, 0.08); border-left: 3px solid var(--gold); }
-  .dish-item-num {
-    font-size: 0.7rem;
-    color: var(--text3);
-    width: 20px;
-    text-align: center;
-  }
-  .dish-item-thumb {
-    width: 40px; height: 40px;
-    border-radius: 4px;
-    object-fit: cover;
-    background: var(--bg);
-  }
-  .dish-item-text {
-    flex: 1;
-    overflow: hidden;
-  }
-  .dish-item-cat {
-    font-size: 0.82rem;
-    color: var(--gold);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .dish-item-desc {
-    font-size: 0.7rem;
-    color: var(--text3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .editor-panel {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--bg2);
-    padding: 1.2rem;
-  }
-  .editor-image-area {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
-    align-items: flex-start;
-  }
-  .editor-image-preview {
-    width: 120px; height: 213px;
-    border-radius: 6px;
-    object-fit: cover;
-    background: var(--bg);
-    border: 1px solid var(--border);
-  }
-  .editor-image-info { flex: 1; }
-
-  /* 言語タブ */
-  .lang-switcher {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
+  .dish-item.active { background: rgba(232,208,160,0.08); border-left: 3px solid var(--gold); }
+  .dish-item-num { font-size: 0.7rem; color: var(--text3); width: 20px; text-align: center; }
+  .dish-item-cat { font-size: 0.82rem; color: var(--gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dish-item-desc { font-size: 0.7rem; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .editor-panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg2); padding: 1.2rem; }
+  .field-group { margin-bottom: 1rem; }
+  .lang-switcher { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
   .lang-btn {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.72rem;
-    color: var(--text2);
-    background: none;
-    border: none;
-    border-right: 1px solid var(--border);
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.15s;
+    padding: 0.35rem 0.6rem; font-size: 0.72rem; color: var(--text2); background: none;
+    border: none; border-right: 1px solid var(--border); cursor: pointer; font-family: inherit; transition: all 0.15s;
   }
   .lang-btn:hover { color: var(--text); background: var(--bg3); }
-  .lang-btn.active { color: var(--gold); background: rgba(232, 208, 160, 0.08); }
+  .lang-btn.active { color: var(--gold); background: rgba(232,208,160,0.08); }
   .lang-btn:last-child { border-right: none; }
-
-  .field-group { margin-bottom: 1rem; }
-  .field-group label { margin-bottom: 0.3rem; }
-
   .save-bar {
-    position: sticky;
-    bottom: 0;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 0.8rem 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: sticky; bottom: 0; background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 0.8rem 1.2rem; display: flex; align-items: center; justify-content: space-between;
     border-radius: 0 0 var(--radius) var(--radius);
   }
-  .save-status {
-    font-size: 0.8rem;
-    color: var(--text3);
-  }
+  .save-status { font-size: 0.8rem; color: var(--text3); }
   .save-status.saved { color: var(--accent); }
 
-  /* ===== 動画生成ページ ===== */
+  /* 生成 */
   .gen-section { margin-bottom: 1.5rem; }
-  .gen-section-title {
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .gen-section-title .num {
-    width: 24px; height: 24px;
-    background: var(--gold);
-    color: #111;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-  }
-  .quick-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .progress-area {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.2rem;
-    display: none;
-  }
+  .gen-section-title { font-size: 0.95rem; color: var(--text); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+  .gen-section-title .num { width:24px; height:24px; background:var(--gold); color:#111; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; }
+  .quick-actions { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; }
+  .progress-area { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; display: none; }
   .progress-area.visible { display: block; }
-  .progress-bar-bg {
-    height: 8px;
-    background: var(--bg3);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 0.8rem;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 4px;
-    transition: width 0.3s;
-    width: 0%;
-  }
-  .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--text2);
-    margin-bottom: 0.8rem;
-  }
+  .progress-bar-bg { height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; margin-bottom: 0.8rem; }
+  .progress-bar-fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.3s; width: 0%; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.8rem; }
   .progress-log {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 0.8rem;
-    max-height: 300px;
-    overflow-y: auto;
-    font-family: "SF Mono", "Consolas", monospace;
-    font-size: 0.72rem;
-    line-height: 1.5;
-    color: var(--text3);
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 0.8rem;
+    max-height: 250px; overflow-y: auto; font-family: "SF Mono",Consolas,monospace; font-size: 0.72rem; line-height: 1.5; color: var(--text3);
   }
-  .progress-log .line-ok { color: var(--accent); }
-  .progress-log .line-err { color: var(--error); }
-  .progress-log .line-task { color: var(--gold); }
 
-  /* ===== プレビューページ ===== */
-  .preview-layout {
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 1.5rem;
-    align-items: start;
-  }
-  .preview-video-wrap {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    background: #000;
-  }
+  /* プレビュー */
+  .preview-layout { display: grid; grid-template-columns: 350px 1fr; gap: 1.5rem; align-items: start; }
+  .preview-video-wrap { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: #000; }
   .preview-video-wrap video { width: 100%; display: block; }
-  .preview-controls { }
-  .preview-dl {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.8rem;
-    margin-top: 1rem;
-  }
-  .video-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  .preview-dl { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+  .video-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem; cursor: pointer; transition: all 0.2s; }
   .video-card:hover { border-color: var(--text3); }
-  .video-card.active { border-color: var(--gold); background: rgba(232, 208, 160, 0.05); }
+  .video-card.active { border-color: var(--gold); background: rgba(232,208,160,0.05); }
   .video-card-name { font-size: 0.8rem; color: var(--text); margin-bottom: 0.2rem; }
   .video-card-size { font-size: 0.7rem; color: var(--text3); }
 
-  /* 月・基本情報編集 */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  /* レスポンシブ */
   @media (max-width: 800px) {
     .editor-layout { grid-template-columns: 1fr; }
     .preview-layout { grid-template-columns: 1fr; }
     .check-grid { grid-template-columns: repeat(3, 1fr); }
-    .info-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- ===== 初期設定オーバーレイ ===== -->
+<div class="setup-overlay" id="setupOverlay" style="display:none;">
+  <div class="setup-box">
+    <h2>初期設定</h2>
+    <p>GitHub リポジトリと連携して、ブラウザから直接メニュー編集・動画生成を行います。<br>
+    GitHub Personal Access Token が必要です。</p>
+    <div class="setup-field">
+      <label>リポジトリ（owner/repo）</label>
+      <input type="text" id="setupRepo" placeholder="marron1984/dn260225-Okurano">
+    </div>
+    <div class="setup-field">
+      <label>ブランチ</label>
+      <input type="text" id="setupBranch" placeholder="main">
+    </div>
+    <div class="setup-field">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="setupToken" placeholder="ghp_xxxxxxxxxxxx">
+      <div class="setup-hint">必要な権限: Contents (read/write), Actions (read/write)</div>
+    </div>
+    <div style="display:flex; gap:0.5rem; margin-top:1.5rem;">
+      <button class="btn btn-gold" onclick="saveSetup()">接続する</button>
+      <span id="setupError" style="color:var(--error); font-size:0.8rem; align-self:center;"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ヘッダー ===== -->
 <div class="header">
   <h1>大 嵓 埜</h1>
-  <span class="header-sub" id="headerMonth">管理画面</span>
+  <div class="header-right">
+    <span class="header-sub" id="headerMonth">管理画面</span>
+    <span class="status-dot" id="statusDot" title="GitHub接続状態"></span>
+    <button class="btn btn-sm" onclick="showSetup()" title="設定">設定</button>
+  </div>
 </div>
 
 <div class="nav">
@@ -469,10 +217,9 @@
 
 <div class="main">
 
-  <!-- ========== メニュー編集 ========== -->
+  <!-- ===== メニュー編集 ===== -->
   <div class="page active" id="page-edit">
     <div class="editor-layout">
-
       <div class="dish-list">
         <div class="dish-list-header">
           <button class="btn-sm active" onclick="switchEditorCourse('seiran')">青藍色</button>
@@ -480,35 +227,30 @@
         </div>
         <div id="dishList"></div>
       </div>
-
       <div class="editor-panel" id="editorPanel">
         <div id="editorContent">
           <p style="color:var(--text3); text-align:center; padding:3rem 0;">左のリストから料理を選択してください</p>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ========== 動画生成 ========== -->
+  <!-- ===== 動画生成 ===== -->
   <div class="page" id="page-generate">
-
     <div class="gen-section">
       <div class="gen-section-title"><span class="num">1</span> 言語を選択</div>
       <div class="quick-actions">
-        <button class="btn btn-sm" onclick="checkAll('lang', true)">全選択</button>
-        <button class="btn btn-sm" onclick="checkAll('lang', false)">全解除</button>
-        <button class="btn btn-sm" onclick="checkOnly('lang', ['ja'])">日本語のみ</button>
-        <button class="btn btn-sm" onclick="checkAll('lang', true); uncheckOne('lang','ja')">日本語以外</button>
+        <button class="btn btn-sm" onclick="checkAll('lang',true)">全選択</button>
+        <button class="btn btn-sm" onclick="checkAll('lang',false)">全解除</button>
+        <button class="btn btn-sm" onclick="checkOnly('lang',['ja'])">日本語のみ</button>
+        <button class="btn btn-sm" onclick="checkAll('lang',true); uncheckOne('lang','ja')">日本語以外</button>
       </div>
       <div class="check-grid" id="langChecks"></div>
     </div>
-
     <div class="gen-section">
       <div class="gen-section-title"><span class="num">2</span> コースを選択</div>
       <div class="check-grid" id="courseChecks"></div>
     </div>
-
     <div class="gen-section">
       <div class="gen-section-title"><span class="num">3</span> 生成開始</div>
       <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
@@ -516,21 +258,17 @@
         <span id="genSummary" style="font-size:0.85rem; color:var(--text2);"></span>
       </div>
     </div>
-
     <div class="progress-area" id="progressArea">
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBar"></div>
-      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
       <div class="progress-info">
         <span id="progressTask">準備中...</span>
-        <span id="progressPct">0%</span>
+        <span id="progressPct"></span>
       </div>
       <div class="progress-log" id="progressLog"></div>
     </div>
-
   </div>
 
-  <!-- ========== プレビュー ========== -->
+  <!-- ===== プレビュー ===== -->
   <div class="page" id="page-preview">
     <div class="preview-layout">
       <div>
@@ -551,37 +289,150 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
 // ============================================================
-// 状態管理
+// GitHub API クライアント
 // ============================================================
+class GitHub {
+  constructor(token, owner, repo, branch) {
+    this.token = token;
+    this.owner = owner;
+    this.repo = repo;
+    this.branch = branch;
+    this.base = `https://api.github.com/repos/${owner}/${repo}`;
+  }
+
+  async req(path, opts = {}) {
+    const url = path.startsWith('http') ? path : `${this.base}${path}`;
+    const res = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        ...(opts.headers || {}),
+      },
+      ...opts,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(`GitHub API ${res.status}: ${err.message || res.statusText}`);
+    }
+    return res.status === 204 ? null : res.json();
+  }
+
+  async getFile(path) {
+    return this.req(`/contents/${path}?ref=${this.branch}`);
+  }
+
+  async putFile(path, content, message, sha) {
+    return this.req(`/contents/${path}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message, content: btoa(unescape(encodeURIComponent(content))),
+        sha, branch: this.branch,
+      }),
+    });
+  }
+
+  async listDir(path) {
+    try {
+      return await this.req(`/contents/${path}?ref=${this.branch}`);
+    } catch { return []; }
+  }
+
+  async triggerWorkflow(workflowFile, inputs) {
+    return this.req(`/actions/workflows/${workflowFile}/dispatches`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: this.branch, inputs }),
+    });
+  }
+
+  async getLatestRun(workflowFile) {
+    const data = await this.req(`/actions/workflows/${workflowFile}/runs?branch=${this.branch}&per_page=1`);
+    return data.workflow_runs?.[0] || null;
+  }
+
+  async getRunJobs(runId) {
+    return this.req(`/actions/runs/${runId}/jobs`);
+  }
+
+  rawUrl(path) {
+    return `https://raw.githubusercontent.com/${this.owner}/${this.repo}/${this.branch}/${path}`;
+  }
+
+  async verify() {
+    return this.req('');
+  }
+}
+
+// ============================================================
+// 状態
+// ============================================================
+let gh = null;
 let menu = null;
+let menuSha = '';
 let editorCourse = 'seiran';
 let editorDishIndex = -1;
 let editorLang = 'ja';
 let dirty = false;
 
 const LANGS = [
-  { code: 'ja', name: '日本語' },
-  { code: 'en', name: 'English' },
-  { code: 'zh_cn', name: '简体中文' },
-  { code: 'zh_tw', name: '繁體中文' },
-  { code: 'ko', name: '한국어' },
-  { code: 'fr', name: 'Français' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'th', name: 'ไทย' },
-  { code: 'pt', name: 'Português' },
-  { code: 'pt_br', name: 'Português BR' },
-  { code: 'tl', name: 'Filipino' },
-  { code: 'vi', name: 'Tiếng Việt' },
+  {code:'ja',name:'日本語'},{code:'en',name:'English'},
+  {code:'zh_cn',name:'简体中文'},{code:'zh_tw',name:'繁體中文'},
+  {code:'ko',name:'한국어'},{code:'fr',name:'Français'},
+  {code:'de',name:'Deutsch'},{code:'th',name:'ไทย'},
+  {code:'pt',name:'Português'},{code:'pt_br',name:'Português BR'},
+  {code:'tl',name:'Filipino'},{code:'vi',name:'Tiếng Việt'},
 ];
-const COURSES = [
-  { id: 'seiran', name: '青藍色コース' },
-  { id: 'kikyou', name: '桔梗色コース' },
-];
+const COURSES = [{id:'seiran',name:'青藍色コース'},{id:'kikyou',name:'桔梗色コース'}];
+const WORKFLOW_FILE = 'generate-videos.yml';
+
+// ============================================================
+// 設定管理
+// ============================================================
+function loadConfig() {
+  try { return JSON.parse(localStorage.getItem('okurano_config') || 'null'); }
+  catch { return null; }
+}
+function saveConfig(cfg) { localStorage.setItem('okurano_config', JSON.stringify(cfg)); }
+
+function showSetup() {
+  const cfg = loadConfig();
+  if (cfg) {
+    document.getElementById('setupRepo').value = cfg.repo || '';
+    document.getElementById('setupBranch').value = cfg.branch || 'main';
+    document.getElementById('setupToken').value = cfg.token || '';
+  }
+  document.getElementById('setupOverlay').style.display = 'flex';
+}
+
+async function saveSetup() {
+  const repo = document.getElementById('setupRepo').value.trim();
+  const branch = document.getElementById('setupBranch').value.trim() || 'main';
+  const token = document.getElementById('setupToken').value.trim();
+  const errEl = document.getElementById('setupError');
+  errEl.textContent = '';
+
+  if (!repo || !token) { errEl.textContent = 'リポジトリとトークンを入力してください'; return; }
+  const [owner, repoName] = repo.split('/');
+  if (!owner || !repoName) { errEl.textContent = 'owner/repo 形式で入力してください'; return; }
+
+  try {
+    errEl.textContent = '接続確認中...';
+    const testGh = new GitHub(token, owner, repoName, branch);
+    await testGh.verify();
+    saveConfig({ repo, branch, token });
+    gh = testGh;
+    document.getElementById('setupOverlay').style.display = 'none';
+    document.getElementById('statusDot').className = 'status-dot ok';
+    await loadMenu();
+  } catch (e) {
+    errEl.textContent = '接続失敗: ' + e.message;
+  }
+}
 
 // ============================================================
 // ナビゲーション
@@ -596,23 +447,20 @@ function showPage(name) {
 }
 
 // ============================================================
-// API
-// ============================================================
-async function api(path, opts = {}) {
-  const res = await fetch(`/api/${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...opts,
-  });
-  return res.json();
-}
-
-// ============================================================
 // メニュー編集
 // ============================================================
 async function loadMenu() {
-  menu = await api('menu');
-  document.getElementById('headerMonth').textContent = `${menu.month || ''} 管理画面`;
-  renderDishList();
+  if (!gh) return;
+  try {
+    const file = await gh.getFile('generator/menu.json');
+    menuSha = file.sha;
+    menu = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g, '')))));
+    document.getElementById('headerMonth').textContent = `${menu.month || ''} 管理画面`;
+    renderDishList();
+    dirty = false;
+  } catch (e) {
+    alert('メニュー読み込みエラー: ' + e.message);
+  }
 }
 
 function switchEditorCourse(courseId) {
@@ -621,118 +469,79 @@ function switchEditorCourse(courseId) {
   document.querySelectorAll('.dish-list-header .btn-sm').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
   renderDishList();
-  document.getElementById('editorContent').innerHTML =
-    '<p style="color:var(--text3); text-align:center; padding:3rem 0;">左のリストから料理を選択してください</p>';
+  document.getElementById('editorContent').innerHTML = '<p style="color:var(--text3); text-align:center; padding:3rem 0;">左のリストから料理を選択してください</p>';
 }
 
 function renderDishList() {
+  if (!menu) return;
   const dishes = menu.courses[editorCourse].dishes;
-  const el = document.getElementById('dishList');
-  el.innerHTML = dishes.map((d, i) => {
+  document.getElementById('dishList').innerHTML = dishes.map((d, i) => {
     const cat = d.category?.ja || d.category?.en || `品目 ${i+1}`;
     const desc = (d.description?.ja || d.description?.en || '').split('\n')[0];
-    const imgSrc = d.image ? `/files/${d.image}` : '';
-    return `
-      <div class="dish-item ${i === editorDishIndex ? 'active' : ''}" onclick="selectDish(${i})">
-        <span class="dish-item-num">${i + 1}</span>
-        ${imgSrc ? `<img class="dish-item-thumb" src="${imgSrc}" loading="lazy">` : ''}
-        <div class="dish-item-text">
-          <div class="dish-item-cat">${esc(cat)}</div>
-          <div class="dish-item-desc">${esc(desc)}</div>
-        </div>
-      </div>`;
+    return `<div class="dish-item ${i===editorDishIndex?'active':''}" onclick="selectDish(${i})">
+      <span class="dish-item-num">${i+1}</span>
+      <div><div class="dish-item-cat">${esc(cat)}</div><div class="dish-item-desc">${esc(desc)}</div></div>
+    </div>`;
   }).join('');
 }
 
-function selectDish(index) {
-  editorDishIndex = index;
-  renderDishList();
-  renderEditor();
-}
+function selectDish(i) { editorDishIndex = i; renderDishList(); renderEditor(); }
 
 function renderEditor() {
-  if (editorDishIndex < 0) return;
+  if (editorDishIndex < 0 || !menu) return;
   const dish = menu.courses[editorCourse].dishes[editorDishIndex];
-  const imgSrc = dish.image ? `/files/${dish.image}` : '';
-
+  const isSummary = dish.category_is_course_summary || false;
   const langTabs = LANGS.map(l =>
-    `<button class="lang-btn ${l.code === editorLang ? 'active' : ''}" onclick="switchEditorLang('${l.code}')">${l.name}</button>`
+    `<button class="lang-btn ${l.code===editorLang?'active':''}" onclick="switchEditorLang('${l.code}')">${l.name}</button>`
   ).join('');
-
   const cat = dish.category?.[editorLang] || '';
   const desc = dish.description?.[editorLang] || '';
-  const isSummary = dish.category_is_course_summary || false;
-
   document.getElementById('editorContent').innerHTML = `
-    <div class="editor-image-area">
-      ${imgSrc ? `<img class="editor-image-preview" src="${imgSrc}">` : '<div class="editor-image-preview"></div>'}
-      <div class="editor-image-info">
-        <div class="field-group">
-          <label>画像パス</label>
-          <input type="text" value="${esc(dish.image || '')}" onchange="updateDishField('image', this.value)">
-        </div>
-        ${isSummary ? '<p style="color:var(--gold); font-size:0.8rem;">※ コース集合写真</p>' : ''}
-      </div>
+    <div class="field-group">
+      <label>画像パス</label>
+      <input type="text" value="${esc(dish.image||'')}" onchange="updateDishField('image',this.value)">
     </div>
-
     <div class="lang-switcher">${langTabs}</div>
-
     <div class="field-group">
-      <label>${isSummary ? 'コース表示名' : 'カテゴリ名'}（${editorLang}）</label>
-      <input type="text" id="editCat" value="${esc(cat)}" oninput="updateDishLangField('category', '${editorLang}', this.value)">
+      <label>${isSummary?'コース表示名':'カテゴリ名'}（${editorLang}）</label>
+      <input type="text" value="${esc(cat)}" oninput="updateDishLangField('category','${editorLang}',this.value)">
     </div>
-
-    ${!isSummary ? `
-    <div class="field-group">
+    ${!isSummary ? `<div class="field-group">
       <label>説明・食材（${editorLang}）</label>
-      <textarea id="editDesc" rows="3" oninput="updateDishLangField('description', '${editorLang}', this.value)">${esc(desc)}</textarea>
+      <textarea rows="3" oninput="updateDishLangField('description','${editorLang}',this.value)">${esc(desc)}</textarea>
     </div>` : ''}
-
     <div class="save-bar">
-      <span class="save-status ${dirty ? '' : 'saved'}" id="saveStatus">${dirty ? '未保存の変更あり' : '保存済み'}</span>
-      <button class="btn btn-gold btn-sm" onclick="saveMenu()">保存する</button>
-    </div>
-  `;
+      <span class="save-status ${dirty?'':'saved'}" id="saveStatus">${dirty?'未保存の変更あり':'保存済み'}</span>
+      <button class="btn btn-gold btn-sm" onclick="saveMenu()">GitHub に保存</button>
+    </div>`;
 }
 
-function switchEditorLang(lang) {
-  editorLang = lang;
-  renderEditor();
-}
-
-function updateDishField(field, value) {
-  menu.courses[editorCourse].dishes[editorDishIndex][field] = value;
-  dirty = true;
-  updateSaveStatus();
-}
-
+function switchEditorLang(lang) { editorLang = lang; renderEditor(); }
+function updateDishField(field, value) { menu.courses[editorCourse].dishes[editorDishIndex][field] = value; dirty = true; updateSaveStatus(); }
 function updateDishLangField(field, lang, value) {
-  const dish = menu.courses[editorCourse].dishes[editorDishIndex];
-  if (!dish[field]) dish[field] = {};
-  dish[field][lang] = value;
-  dirty = true;
-  updateSaveStatus();
-  renderDishList();
+  const d = menu.courses[editorCourse].dishes[editorDishIndex];
+  if (!d[field]) d[field] = {};
+  d[field][lang] = value; dirty = true; updateSaveStatus(); renderDishList();
 }
-
 function updateSaveStatus() {
   const el = document.getElementById('saveStatus');
-  if (el) {
-    el.textContent = dirty ? '未保存の変更あり' : '保存済み';
-    el.className = `save-status ${dirty ? '' : 'saved'}`;
-  }
+  if (el) { el.textContent = dirty ? '未保存の変更あり' : '保存済み'; el.className = `save-status ${dirty?'':'saved'}`; }
 }
 
 async function saveMenu() {
-  const res = await api('menu', {
-    method: 'POST',
-    body: JSON.stringify(menu),
-  });
-  if (res.ok) {
-    dirty = false;
-    updateSaveStatus();
-  } else {
-    alert('保存エラー: ' + (res.error || ''));
+  if (!gh || !menu) return;
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = '保存中...';
+  try {
+    const content = JSON.stringify(menu, null, 2);
+    const res = await gh.putFile('generator/menu.json', content, `メニュー更新: ${menu.month}`, menuSha);
+    menuSha = res.content.sha;
+    dirty = false; updateSaveStatus();
+    btn.textContent = '保存完了!';
+    setTimeout(() => { btn.textContent = 'GitHub に保存'; btn.disabled = false; }, 1500);
+  } catch (e) {
+    alert('保存エラー: ' + e.message);
+    btn.textContent = 'GitHub に保存'; btn.disabled = false;
   }
 }
 
@@ -740,186 +549,224 @@ async function saveMenu() {
 // 動画生成
 // ============================================================
 function initGenChecks() {
-  // 言語チェックボックス
   document.getElementById('langChecks').innerHTML = LANGS.map(l =>
-    `<label class="check-item checked" onclick="toggleCheck(this)">
+    `<label class="check-item checked" onclick="setTimeout(()=>{toggleCheck(this)},0)">
       <input type="checkbox" name="lang" value="${l.code}" checked>
-      <span class="check-dot"></span>
-      <span>${l.name}</span>
-    </label>`
+      <span class="check-dot"></span><span>${l.name}</span></label>`
   ).join('');
-
-  // コースチェックボックス
   document.getElementById('courseChecks').innerHTML = COURSES.map(c =>
-    `<label class="check-item checked" onclick="toggleCheck(this)">
+    `<label class="check-item checked" onclick="setTimeout(()=>{toggleCheck(this)},0)">
       <input type="checkbox" name="course" value="${c.id}" checked>
-      <span class="check-dot"></span>
-      <span>${c.name}</span>
-    </label>`
+      <span class="check-dot"></span><span>${c.name}</span></label>`
   ).join('');
 }
-
-function toggleCheck(el) {
-  setTimeout(() => {
-    el.classList.toggle('checked', el.querySelector('input').checked);
-    updateGenSummary();
-  }, 0);
-}
-
+function toggleCheck(el) { el.classList.toggle('checked', el.querySelector('input').checked); updateGenSummary(); }
 function checkAll(name, checked) {
   document.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
-    cb.checked = checked;
-    cb.closest('.check-item').classList.toggle('checked', checked);
-  });
-  updateGenSummary();
+    cb.checked = checked; cb.closest('.check-item').classList.toggle('checked', checked);
+  }); updateGenSummary();
 }
-
-function checkOnly(name, values) {
+function checkOnly(name, vals) {
   document.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
-    cb.checked = values.includes(cb.value);
-    cb.closest('.check-item').classList.toggle('checked', cb.checked);
-  });
-  updateGenSummary();
+    cb.checked = vals.includes(cb.value); cb.closest('.check-item').classList.toggle('checked', cb.checked);
+  }); updateGenSummary();
 }
-
-function uncheckOne(name, value) {
-  const cb = document.querySelector(`input[name="${name}"][value="${value}"]`);
+function uncheckOne(name, val) {
+  const cb = document.querySelector(`input[name="${name}"][value="${val}"]`);
   if (cb) { cb.checked = false; cb.closest('.check-item').classList.remove('checked'); }
   updateGenSummary();
 }
-
-function getChecked(name) {
-  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(cb => cb.value);
-}
-
+function getChecked(name) { return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c=>c.value); }
 function updateGenSummary() {
-  const langs = getChecked('lang').length;
-  const courses = getChecked('course').length;
-  const total = langs * courses;
-  document.getElementById('genSummary').textContent =
-    total > 0 ? `${langs}言語 × ${courses}コース = ${total}パターン` : '言語とコースを選択してください';
+  const l = getChecked('lang').length, c = getChecked('course').length;
+  document.getElementById('genSummary').textContent = l*c > 0 ? `${l}言語 × ${c}コース = ${l*c}パターン` : '言語とコースを選択';
 }
 
 let pollTimer = null;
 
 async function startGeneration() {
+  if (!gh) { alert('GitHub接続を設定してください'); return; }
   const languages = getChecked('lang');
   const courses = getChecked('course');
-  if (!languages.length || !courses.length) {
-    alert('言語とコースを選択してください');
-    return;
-  }
+  if (!languages.length || !courses.length) { alert('言語とコースを選択してください'); return; }
 
   const btn = document.getElementById('genBtn');
-  btn.disabled = true;
-  btn.textContent = '生成中...';
+  btn.disabled = true; btn.textContent = 'ワークフロー起動中...';
 
-  document.getElementById('progressArea').classList.add('visible');
-  document.getElementById('progressBar').style.width = '0%';
+  const pArea = document.getElementById('progressArea');
+  pArea.classList.add('visible');
   document.getElementById('progressLog').innerHTML = '';
-  document.getElementById('progressTask').textContent = '準備中...';
-  document.getElementById('progressPct').textContent = '0%';
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('progressTask').textContent = 'GitHub Actions を起動中...';
+  document.getElementById('progressPct').textContent = '';
 
-  await api('generate', {
-    method: 'POST',
-    body: JSON.stringify({ languages, courses }),
-  });
+  try {
+    await gh.triggerWorkflow(WORKFLOW_FILE, {
+      languages: languages.join(','),
+      courses: courses.join(','),
+    });
+    addLog('GitHub Actions ワークフローを起動しました');
+    addLog(`言語: ${languages.join(', ')}`);
+    addLog(`コース: ${courses.join(', ')}`);
+    addLog('実行状況を監視中...');
 
-  // ポーリング開始
-  let lastLogLen = 0;
-  pollTimer = setInterval(async () => {
-    const st = await api('status');
-    document.getElementById('progressBar').style.width = st.progress + '%';
-    document.getElementById('progressPct').textContent = st.progress + '%';
-    document.getElementById('progressTask').textContent = st.current_task || '';
+    // ポーリング開始（5秒間隔で GitHub Actions の状態を確認）
+    setTimeout(() => pollWorkflow(btn), 5000);
+  } catch (e) {
+    addLog('エラー: ' + e.message, 'err');
+    btn.disabled = false; btn.textContent = '動画を生成する';
+  }
+}
 
-    // 新しいログ行を追加
-    const logEl = document.getElementById('progressLog');
-    for (let i = lastLogLen; i < st.log.length; i++) {
-      const line = st.log[i];
-      const div = document.createElement('div');
-      div.textContent = line;
-      if (line.includes('完了!')) div.className = 'line-ok';
-      else if (line.includes('ERROR') || line.includes('エラー')) div.className = 'line-err';
-      else if (line.includes('===')) div.className = 'line-task';
-      logEl.appendChild(div);
+async function pollWorkflow(btn) {
+  try {
+    const run = await gh.getLatestRun(WORKFLOW_FILE);
+    if (!run) { addLog('ワークフロー実行が見つかりません', 'err'); btn.disabled = false; btn.textContent = '動画を生成する'; return; }
+
+    const status = run.status;
+    const conclusion = run.conclusion;
+
+    document.getElementById('progressTask').textContent =
+      status === 'queued' ? '待機中...' :
+      status === 'in_progress' ? '生成中...' :
+      status === 'completed' ? (conclusion === 'success' ? '完了!' : `終了: ${conclusion}`) : status;
+
+    if (status === 'in_progress') {
+      document.getElementById('progressBar').style.width = '50%';
+      document.getElementById('progressPct').textContent = '実行中';
+      // ジョブのステップ情報を取得
+      try {
+        const jobs = await gh.getRunJobs(run.id);
+        const job = jobs.jobs?.[0];
+        if (job?.steps) {
+          const completed = job.steps.filter(s => s.status === 'completed').length;
+          const total = job.steps.length;
+          const pct = Math.round(completed / total * 100);
+          document.getElementById('progressBar').style.width = pct + '%';
+          document.getElementById('progressPct').textContent = `${pct}%`;
+          const currentStep = job.steps.find(s => s.status === 'in_progress');
+          if (currentStep) {
+            document.getElementById('progressTask').textContent = currentStep.name;
+          }
+        }
+      } catch {}
     }
-    lastLogLen = st.log.length;
-    logEl.scrollTop = logEl.scrollHeight;
 
-    if (st.status !== 'running') {
-      clearInterval(pollTimer);
-      btn.disabled = false;
-      btn.textContent = '動画を生成する';
-      if (st.status === 'done') {
-        document.getElementById('progressTask').textContent = '全て完了しました';
+    if (status === 'completed') {
+      if (conclusion === 'success') {
+        document.getElementById('progressBar').style.width = '100%';
+        document.getElementById('progressPct').textContent = '100%';
+        addLog('全ての動画生成が完了しました!', 'ok');
+        addLog(`詳細: ${run.html_url}`);
+      } else {
+        addLog(`ワークフロー終了: ${conclusion}`, 'err');
+        addLog(`詳細: ${run.html_url}`);
       }
+      btn.disabled = false; btn.textContent = '動画を生成する';
+      return;
     }
-  }, 600);
+
+    // 継続ポーリング
+    setTimeout(() => pollWorkflow(btn), 8000);
+  } catch (e) {
+    addLog('状態確認エラー: ' + e.message, 'err');
+    setTimeout(() => pollWorkflow(btn), 10000);
+  }
+}
+
+function addLog(text, type='') {
+  const el = document.getElementById('progressLog');
+  const div = document.createElement('div');
+  div.textContent = text;
+  if (type === 'ok') div.style.color = 'var(--accent)';
+  if (type === 'err') div.style.color = 'var(--error)';
+  el.appendChild(div);
+  el.scrollTop = el.scrollHeight;
 }
 
 // ============================================================
 // プレビュー
 // ============================================================
 async function loadVideos() {
-  const videos = await api('videos');
+  if (!gh) return;
   const grid = document.getElementById('videoGrid');
+  grid.innerHTML = '<p style="color:var(--text3); font-size:0.85rem;">読み込み中...</p>';
 
-  if (!Object.keys(videos).length) {
-    grid.innerHTML = '<p style="color:var(--text3); font-size:0.85rem;">生成済みの動画がありません。「動画生成」タブから生成してください。</p>';
+  const outputDirs = ['output','output_en','output_ko','output_zh_cn','output_zh_tw',
+    'output_fr','output_de','output_th','output_pt','output_pt_br','output_tl','output_vi',
+    'output2','output2_en','output2_ko','output2_zh_cn','output2_zh_tw',
+    'output2_fr','output2_de','output2_th','output2_pt','output2_pt_br','output2_tl','output2_vi'];
+
+  const videos = [];
+  for (const dir of outputDirs) {
+    try {
+      const files = await gh.listDir(dir);
+      if (Array.isArray(files)) {
+        for (const f of files) {
+          if (f.name.endsWith('_reel.mp4')) {
+            videos.push({ path: `${dir}/${f.name}`, size: f.size, name: f.name });
+          }
+        }
+      }
+    } catch {}
+  }
+
+  if (!videos.length) {
+    grid.innerHTML = '<p style="color:var(--text3); font-size:0.85rem;">生成済みの動画がありません</p>';
     return;
   }
 
-  // コース・言語でグルーピング
-  const courseNames = { 'output': '青藍色', 'output2': '桔梗色' };
-  const items = Object.values(videos).sort((a, b) => a.path.localeCompare(b.path));
-
-  grid.innerHTML = items.map(v => {
-    const name = v.path.split('/').pop().replace('okurano_', '').replace('_reel.mp4', '');
-    const sizeMB = (v.size / 1024 / 1024).toFixed(1);
-    let display = name || 'reel';
-    // 名前を読みやすく
-    display = display.replace('seiran_', '青藍色 ').replace('kikyou_', '桔梗色 ');
+  grid.innerHTML = videos.map(v => {
+    let display = v.name.replace('okurano_','').replace('_reel.mp4','');
+    display = display.replace('seiran_','青藍色 ').replace('kikyou_','桔梗色 ');
     LANGS.forEach(l => { display = display.replace(l.code, l.name); });
     if (display === 'reel') display = '青藍色 日本語';
     if (display === 'kikyou') display = '桔梗色 日本語';
-
-    return `
-      <div class="video-card" onclick="playPreview('${v.path}', this)">
-        <div class="video-card-name">${esc(display)}</div>
-        <div class="video-card-size">${sizeMB} MB</div>
-      </div>`;
+    const sizeMB = (v.size / 1024 / 1024).toFixed(1);
+    return `<div class="video-card" onclick="playPreview('${v.path}',this)">
+      <div class="video-card-name">${esc(display)}</div>
+      <div class="video-card-size">${sizeMB} MB</div></div>`;
   }).join('');
 }
 
-function playPreview(path, cardEl) {
+function playPreview(path, el) {
   const player = document.getElementById('previewPlayer');
   const src = document.getElementById('previewSrc');
-  src.src = `/files/${path}`;
-  player.load();
-  player.play();
-
+  const url = gh.rawUrl(path);
+  src.src = url; player.load(); player.play();
   document.querySelectorAll('.video-card').forEach(c => c.classList.remove('active'));
-  if (cardEl) cardEl.classList.add('active');
-
-  document.getElementById('previewDl').innerHTML =
-    `<a class="btn btn-sm" href="/files/${path}" download>ダウンロード</a>`;
+  if (el) el.classList.add('active');
+  document.getElementById('previewDl').innerHTML = `<a class="btn btn-sm" href="${url}" download target="_blank">ダウンロード</a>`;
 }
 
 // ============================================================
 // ユーティリティ
 // ============================================================
-function esc(s) {
-  if (!s) return '';
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function esc(s) { return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') : ''; }
 
 // ============================================================
 // 初期化
 // ============================================================
-loadMenu();
-initGenChecks();
-updateGenSummary();
+(async () => {
+  initGenChecks();
+  updateGenSummary();
+
+  const cfg = loadConfig();
+  if (cfg?.token && cfg?.repo) {
+    const [owner, repoName] = cfg.repo.split('/');
+    gh = new GitHub(cfg.token, owner, repoName, cfg.branch || 'main');
+    try {
+      await gh.verify();
+      document.getElementById('statusDot').className = 'status-dot ok';
+      await loadMenu();
+    } catch {
+      document.getElementById('statusDot').className = 'status-dot err';
+      showSetup();
+    }
+  } else {
+    showSetup();
+  }
+})();
 </script>
 </body>
 </html>
