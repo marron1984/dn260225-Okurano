@@ -201,7 +201,7 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
         # 価格（拡大に合わせて調整）
         f"drawtext=text='{esc_price}':"
         f"fontfile='{font}':fontsize=64:fontcolor=#{COLOR_WHITE}:"
-        f"x=(w-text_w)/2:y=(h/2+130)+({slide3}):"
+        f"x=(w-text_w)/2:y=(h/2+160)+({slide3}):"
         f"alpha={alpha3}"
     )
 
@@ -342,8 +342,8 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
     y_pos += 65
 
     # 住所
-    addr_size = 16
-    addr_spacing = 22
+    addr_size = 35
+    addr_spacing = 46
     for i, line in enumerate(address_lines):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
@@ -374,7 +374,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         alpha, slide = make_slide_up_alpha(1.0 + i * 0.1, 0.4)
         elements.append(
             f"drawtext=text='{esc}':"
-            f"fontfile='{font}':fontsize=65:fontcolor=#{COLOR_GRAY}:"  # 26→65 (250%)
+            f"fontfile='{font}':fontsize=40:fontcolor=#{COLOR_GRAY}:"  # →40
             f"x=(w-text_w)/2:y={y_pos}+({slide}):alpha={alpha}"
         )
         y_pos += 34
