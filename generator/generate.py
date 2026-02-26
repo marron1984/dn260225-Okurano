@@ -193,15 +193,15 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
         f"fontfile='{font}':fontsize={store_size}:fontcolor=#{COLOR_GOLD}:"
         f"x=(w-text_w)/2:y=(h/2-{store_size})+({slide1}):"
         f"alpha={alpha1},"
-        # コース名（白文字で目立たせる）
+        # コース名（2倍に拡大、白文字で目立たせる）
         f"drawtext=text='{esc_course}':"
-        f"fontfile='{font}':fontsize=32:fontcolor=#{COLOR_WHITE}:"
-        f"x=(w-text_w)/2:y=(h/2+40)+({slide2}):"
+        f"fontfile='{font}':fontsize=64:fontcolor=#{COLOR_WHITE}:"
+        f"x=(w-text_w)/2:y=(h/2+50)+({slide2}):"
         f"alpha={alpha2},"
-        # 価格
+        # 価格（拡大に合わせて調整）
         f"drawtext=text='{esc_price}':"
-        f"fontfile='{font}':fontsize=30:fontcolor=#{COLOR_WHITE}:"
-        f"x=(w-text_w)/2:y=(h/2+84)+({slide3}):"
+        f"fontfile='{font}':fontsize=44:fontcolor=#{COLOR_WHITE}:"
+        f"x=(w-text_w)/2:y=(h/2+130)+({slide3}):"
         f"alpha={alpha3}"
     )
 
@@ -262,16 +262,34 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
             line_delay = 0.4 + i * 0.15
             alpha_d, slide_d = make_slide_up_alpha(line_delay, 0.4)
             y_offset = f"h-{290 - i * line_spacing}"
+            # テキストシャドウ（黒の影を1px右下にずらして太さと可読性を確保）
             drawtext_descs += (
                 f",drawtext=text='{esc_line}':"
-                f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_GRAY}:"
+                f"fontfile='{font}':fontsize={desc_size}:fontcolor=black@0.7:"
+                f"x=(w-text_w)/2+2:y=({y_offset})+({slide_d})+2:"
+                f"alpha={alpha_d}"
+            )
+            # 本体テキスト（白文字で背景と区別）
+            drawtext_descs += (
+                f",drawtext=text='{esc_line}':"
+                f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_WHITE}:"
                 f"x=(w-text_w)/2:y=({y_offset})+({slide_d}):"
                 f"alpha={alpha_d}"
             )
 
+    # 下部ダークグラデーション（テキストエリアの背景を段階的に暗く）
+    dark_overlay = ""
+    if not is_summary and description.strip():
+        dark_overlay = (
+            "drawbox=y=ih*0.55:w=iw:h=ih*0.10:color=black@0.15:t=fill,"
+            "drawbox=y=ih*0.65:w=iw:h=ih*0.10:color=black@0.20:t=fill,"
+            "drawbox=y=ih*0.75:w=iw:h=ih*0.25:color=black@0.25:t=fill,"
+        )
+
     vf = (
         f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={WIDTH}:{HEIGHT},"
+        f"{dark_overlay}"
         f"{drawtext_cat}"
         f"{drawtext_descs}"
     )
