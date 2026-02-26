@@ -56,3 +56,5 @@ output2_*/09_clip.mp4
 output2_*/10_clip.mp4
 output2_*/11_ending.mp4
 generator/__pycache__/
+generator/.server.pid
+generator/.server.log
