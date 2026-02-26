@@ -34,11 +34,15 @@ COURSE_TIMING = {
         "title": 3.125,    # 2.5 × 1.25
         "clip": 2.125,     # 1.7 × 1.25
         "ending": 4.375,   # 3.5 × 1.25
+        "title_brightness": -0.08,
+        "ending_brightness": -0.15,
     },
     "kikyou": {
         "title": 4.375,    # 3.5 × 1.25
         "clip": 3.125,     # 2.5 × 1.25
         "ending": 5.0,     # 4.0 × 1.25
+        "title_brightness": -0.30,   # 暗く → 文字を見やすく
+        "ending_brightness": -0.35,  # 暗く → 文字を見やすく
     },
 }
 
@@ -163,7 +167,7 @@ def make_slide_up_alpha(delay=0.3, fade_dur=0.5):
 # 動画生成関数
 # ============================================================
 
-def generate_title(image_path, store_name, course_name, price, lang, output_path, duration=None):
+def generate_title(image_path, store_name, course_name, price, lang, output_path, duration=None, brightness=-0.08):
     """タイトルカード動画を生成する（店名 + コース名 + 価格）"""
     duration = duration or TITLE_DURATION
     font = get_font(lang)
@@ -183,7 +187,7 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
     vf = (
         f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={WIDTH}:{HEIGHT},"
-        f"eq=brightness=-0.08,"
+        f"eq=brightness={brightness},"
         # 店名
         f"drawtext=text='{esc_store}':"
         f"fontfile='{font}':fontsize={store_size}:fontcolor=#{COLOR_GOLD}:"
@@ -220,22 +224,22 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
     # カテゴリ名のエスケープとスタイル
     esc_cat = escape_ffmpeg_text(category)
 
-    # カテゴリのフォントサイズ
+    # カテゴリのフォントサイズ（日本語は140%拡大に合わせて大きく）
     if is_summary:
-        cat_size = 32
-    elif lang == "ja":
-        cat_size = 52
-    elif lang in ("zh_cn", "zh_tw"):
-        cat_size = 48
-    elif lang == "th":
         cat_size = 40
+    elif lang == "ja":
+        cat_size = 68       # 52 → 68
+    elif lang in ("zh_cn", "zh_tw"):
+        cat_size = 62       # 48 → 62
+    elif lang == "th":
+        cat_size = 52       # 40 → 52
     else:
-        cat_size = 44
+        cat_size = 56       # 44 → 56
 
     alpha1, slide1 = make_slide_up_alpha(0.2, 0.5)
 
-    # カテゴリのdrawtext
-    cat_y_base = f"h-260" if not is_summary else f"h-120"
+    # カテゴリのdrawtext（文字拡大に合わせてY位置を上に）
+    cat_y_base = f"h-320" if not is_summary else f"h-140"
     drawtext_cat = (
         f"drawtext=text='{esc_cat}':"
         f"fontfile='{font}':fontsize={cat_size}:fontcolor=#{COLOR_GOLD}:"
@@ -243,20 +247,21 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
         f"alpha={alpha1}"
     )
 
-    # 説明テキスト（複数行対応）
+    # 説明テキスト（複数行対応・140%拡大）
     drawtext_descs = ""
     if description.strip():
         lines = description.strip().split("\n")
-        desc_size = 22 if lang in ("ja", "zh_cn", "zh_tw") else 20
+        desc_size = 31 if lang in ("ja", "zh_cn", "zh_tw") else 28  # 22→31 (140%), 20→28
         if lang == "th":
-            desc_size = 19
+            desc_size = 27  # 19→27
+        line_spacing = 42   # 30→42（文字拡大に合わせて行間も広く）
         for i, line in enumerate(lines):
             esc_line = escape_ffmpeg_text(line.strip())
             if not esc_line:
                 continue
             line_delay = 0.4 + i * 0.15
             alpha_d, slide_d = make_slide_up_alpha(line_delay, 0.4)
-            y_offset = f"h-{200 - i * 30}"
+            y_offset = f"h-{240 - i * line_spacing}"
             drawtext_descs += (
                 f",drawtext=text='{esc_line}':"
                 f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_GRAY}:"
@@ -282,7 +287,7 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
     return run_ffmpeg(args, f"クリップ: {output_path}")
 
 
-def generate_ending(image_path, store_data, lang, output_path, duration=None):
+def generate_ending(image_path, store_data, lang, output_path, duration=None, brightness=-0.15):
     """エンディング動画を生成する（店舗情報一覧）"""
     duration = duration or ENDING_DURATION
     font = get_font(lang)
@@ -360,7 +365,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None):
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
             continue
-        size = 36 if i == 0 else 32
+        size = 36 if i == 0 else 48  # TableCheck を大きく
         color = COLOR_GOLD if i == 0 else COLOR_WHITE
         alpha, slide = make_slide_up_alpha(1.3 + i * 0.15, 0.5)
         elements.append(
@@ -373,7 +378,7 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None):
     vf = (
         f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={WIDTH}:{HEIGHT},"
-        f"eq=brightness=-0.15,"
+        f"eq=brightness={brightness},"
         + ",".join(elements)
     )
 
@@ -420,11 +425,13 @@ def generate_course(menu, course_id, lang, base_dir):
     out_dir = os.path.join(base_dir, out_dir_name)
     os.makedirs(out_dir, exist_ok=True)
 
-    # コースごとのタイミングを取得
+    # コースごとのタイミング・明るさを取得
     timing = COURSE_TIMING.get(course_id, COURSE_TIMING["seiran"])
     t_title = timing["title"]
     t_clip = timing["clip"]
     t_ending = timing["ending"]
+    b_title = timing.get("title_brightness", -0.08)
+    b_ending = timing.get("ending_brightness", -0.15)
 
     lang_name = LANG_NAMES.get(lang, lang)
     course_ja = COURSE_NAMES.get(course_id, course_id)
@@ -448,7 +455,7 @@ def generate_course(menu, course_id, lang, base_dir):
         print(f"  [SKIP] 画像が見つかりません: {title_image}")
         return False
 
-    if not generate_title(title_image, store_name, course_name, price, lang, title_path, duration=t_title):
+    if not generate_title(title_image, store_name, course_name, price, lang, title_path, duration=t_title, brightness=b_title):
         return False
     clip_paths.append(title_path)
 
@@ -476,7 +483,7 @@ def generate_course(menu, course_id, lang, base_dir):
     ending_path = os.path.join(out_dir, "11_ending.mp4")
     ending_image = os.path.join(base_dir, course["ending_image"])
 
-    if not generate_ending(ending_image, store, lang, ending_path, duration=t_ending):
+    if not generate_ending(ending_image, store, lang, ending_path, duration=t_ending, brightness=b_ending):
         return False
     clip_paths.append(ending_path)
 
