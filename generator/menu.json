@@ -317,6 +317,7 @@
         {
           "image": "processed/_08仕上0026.png",
           "image_offset_y": 100,
+          "text_position": "top",
           "category": {
             "ja": "仕　上",
             "en": "Rice Course",
@@ -624,6 +625,7 @@
         {
           "image": "processed/_08仕上0026.png",
           "image_offset_y": 100,
+          "text_position": "top",
           "category": {
             "ja": "仕　上",
             "en": "Rice Course",

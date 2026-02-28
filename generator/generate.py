@@ -163,6 +163,14 @@ def make_slide_up_alpha(delay=0.3, fade_dur=0.5):
     return alpha, slide
 
 
+def make_slide_down_alpha(delay=0.3, fade_dur=0.5):
+    """テキストのスライドダウン+フェードインアニメーション式を生成する"""
+    end = round(delay + fade_dur, 2)
+    alpha = f"if(lt(t\\,{delay})\\,0\\,if(lt(t\\,{end})\\,min(1\\,(t-{delay})/{fade_dur})\\,1))"
+    slide = f"if(lt(t\\,{delay})\\,-25\\,if(lt(t\\,{end})\\,-25*(1-(t-{delay})/{fade_dur})\\,0))"
+    return alpha, slide
+
+
 # ============================================================
 # 動画生成関数
 # ============================================================
@@ -216,7 +224,7 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
     return run_ffmpeg(args, f"タイトル: {output_path}")
 
 
-def generate_clip(image_path, category, description, lang, output_path, is_summary=False, duration=None, image_offset_y=0):
+def generate_clip(image_path, category, description, lang, output_path, is_summary=False, duration=None, image_offset_y=0, text_position="bottom"):
     """料理クリップ動画を生成する（料理名 + 説明テキスト）"""
     duration = duration or CLIP_DURATION
     font = get_font(lang)
@@ -236,55 +244,98 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
     else:
         cat_size = 56       # 44 → 56
 
-    alpha1, slide1 = make_slide_up_alpha(0.2, 0.5)
-
-    # カテゴリのdrawtext（説明テキスト拡大に合わせてY位置をさらに上に）
-    cat_y_base = f"h-400" if not is_summary else f"h-140"
-    drawtext_cat = (
-        f"drawtext=text='{esc_cat}':"
-        f"fontfile='{font}':fontsize={cat_size}:fontcolor=#{COLOR_GOLD}:"
-        f"x=(w-text_w)/2:y=({cat_y_base})+({slide1}):"
-        f"alpha={alpha1}"
-    )
-
-    # 説明テキスト（複数行対応・さらに140%拡大）
-    drawtext_descs = ""
-    if description.strip():
-        lines = description.strip().split("\n")
-        desc_size = 43 if lang in ("ja", "zh_cn", "zh_tw") else 39  # 31→43 (×1.4), 28→39
-        if lang == "th":
-            desc_size = 38  # 27→38
-        line_spacing = 59   # 42→59（文字拡大に合わせて行間も広く）
-        for i, line in enumerate(lines):
-            esc_line = escape_ffmpeg_text(line.strip())
-            if not esc_line:
-                continue
-            line_delay = 0.4 + i * 0.15
-            alpha_d, slide_d = make_slide_up_alpha(line_delay, 0.4)
-            y_offset = f"h-{290 - i * line_spacing}"
-            # テキストシャドウ（黒の影を1px右下にずらして太さと可読性を確保）
-            drawtext_descs += (
-                f",drawtext=text='{esc_line}':"
-                f"fontfile='{font}':fontsize={desc_size}:fontcolor=black@0.7:"
-                f"x=(w-text_w)/2+2:y=({y_offset})+({slide_d})+2:"
-                f"alpha={alpha_d}"
-            )
-            # 本体テキスト（白文字で背景と区別）
-            drawtext_descs += (
-                f",drawtext=text='{esc_line}':"
-                f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_WHITE}:"
-                f"x=(w-text_w)/2:y=({y_offset})+({slide_d}):"
-                f"alpha={alpha_d}"
-            )
-
-    # 下部ダークグラデーション（テキスト周辺のみ、写真を覆わない）
-    dark_overlay = ""
-    if not is_summary and description.strip():
-        dark_overlay = (
-            "drawbox=y=ih*0.72:w=iw:h=ih*0.06:color=black@0.12:t=fill,"
-            "drawbox=y=ih*0.78:w=iw:h=ih*0.06:color=black@0.18:t=fill,"
-            "drawbox=y=ih*0.84:w=iw:h=ih*0.16:color=black@0.28:t=fill,"
+    if text_position == "top":
+        # テロップを上部に配置（上から下へスライドイン）
+        alpha1, slide1 = make_slide_down_alpha(0.2, 0.5)
+        cat_y_base = "80"
+        drawtext_cat = (
+            f"drawtext=text='{esc_cat}':"
+            f"fontfile='{font}':fontsize={cat_size}:fontcolor=#{COLOR_GOLD}:"
+            f"x=(w-text_w)/2:y=({cat_y_base})+({slide1}):"
+            f"alpha={alpha1}"
         )
+
+        drawtext_descs = ""
+        if description.strip():
+            lines = description.strip().split("\n")
+            desc_size = 43 if lang in ("ja", "zh_cn", "zh_tw") else 39
+            if lang == "th":
+                desc_size = 38
+            line_spacing = 59
+            desc_start_y = 80 + cat_size + 20  # カテゴリの下から開始
+            for i, line in enumerate(lines):
+                esc_line = escape_ffmpeg_text(line.strip())
+                if not esc_line:
+                    continue
+                line_delay = 0.4 + i * 0.15
+                alpha_d, slide_d = make_slide_down_alpha(line_delay, 0.4)
+                y_offset = desc_start_y + i * line_spacing
+                drawtext_descs += (
+                    f",drawtext=text='{esc_line}':"
+                    f"fontfile='{font}':fontsize={desc_size}:fontcolor=black@0.7:"
+                    f"x=(w-text_w)/2+2:y={y_offset}+({slide_d})+2:"
+                    f"alpha={alpha_d}"
+                )
+                drawtext_descs += (
+                    f",drawtext=text='{esc_line}':"
+                    f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_WHITE}:"
+                    f"x=(w-text_w)/2:y={y_offset}+({slide_d}):"
+                    f"alpha={alpha_d}"
+                )
+
+        # 上部ダークグラデーション
+        dark_overlay = ""
+        if not is_summary and description.strip():
+            dark_overlay = (
+                "drawbox=y=0:w=iw:h=ih*0.16:color=black@0.28:t=fill,"
+                "drawbox=y=ih*0.16:w=iw:h=ih*0.06:color=black@0.18:t=fill,"
+                "drawbox=y=ih*0.22:w=iw:h=ih*0.06:color=black@0.12:t=fill,"
+            )
+    else:
+        # テロップを下部に配置（デフォルト：下から上へスライドイン）
+        alpha1, slide1 = make_slide_up_alpha(0.2, 0.5)
+        cat_y_base = f"h-400" if not is_summary else f"h-140"
+        drawtext_cat = (
+            f"drawtext=text='{esc_cat}':"
+            f"fontfile='{font}':fontsize={cat_size}:fontcolor=#{COLOR_GOLD}:"
+            f"x=(w-text_w)/2:y=({cat_y_base})+({slide1}):"
+            f"alpha={alpha1}"
+        )
+
+        drawtext_descs = ""
+        if description.strip():
+            lines = description.strip().split("\n")
+            desc_size = 43 if lang in ("ja", "zh_cn", "zh_tw") else 39
+            if lang == "th":
+                desc_size = 38
+            line_spacing = 59
+            for i, line in enumerate(lines):
+                esc_line = escape_ffmpeg_text(line.strip())
+                if not esc_line:
+                    continue
+                line_delay = 0.4 + i * 0.15
+                alpha_d, slide_d = make_slide_up_alpha(line_delay, 0.4)
+                y_offset = f"h-{290 - i * line_spacing}"
+                drawtext_descs += (
+                    f",drawtext=text='{esc_line}':"
+                    f"fontfile='{font}':fontsize={desc_size}:fontcolor=black@0.7:"
+                    f"x=(w-text_w)/2+2:y=({y_offset})+({slide_d})+2:"
+                    f"alpha={alpha_d}"
+                )
+                drawtext_descs += (
+                    f",drawtext=text='{esc_line}':"
+                    f"fontfile='{font}':fontsize={desc_size}:fontcolor=#{COLOR_WHITE}:"
+                    f"x=(w-text_w)/2:y=({y_offset})+({slide_d}):"
+                    f"alpha={alpha_d}"
+                )
+
+        dark_overlay = ""
+        if not is_summary and description.strip():
+            dark_overlay = (
+                "drawbox=y=ih*0.72:w=iw:h=ih*0.06:color=black@0.12:t=fill,"
+                "drawbox=y=ih*0.78:w=iw:h=ih*0.06:color=black@0.18:t=fill,"
+                "drawbox=y=ih*0.84:w=iw:h=ih*0.16:color=black@0.28:t=fill,"
+            )
 
     # image_offset_yが指定された場合、スケーリングを大きくしてクロップ余地を作る
     extra = abs(image_offset_y) * 2
@@ -499,7 +550,8 @@ def generate_course(menu, course_id, lang, base_dir):
         is_summary = dish.get("category_is_course_summary", False)
 
         offset_y = dish.get("image_offset_y", 0)
-        if not generate_clip(image, category, description, lang, clip_path, is_summary, duration=t_clip, image_offset_y=offset_y):
+        text_pos = dish.get("text_position", "bottom")
+        if not generate_clip(image, category, description, lang, clip_path, is_summary, duration=t_clip, image_offset_y=offset_y, text_position=text_pos):
             return False
         clip_paths.append(clip_path)
 
