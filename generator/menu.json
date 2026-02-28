@@ -549,27 +549,27 @@
           }
         },
         {
-          "image": "processed2/08揚物0023.png",
+          "image": "processed/_07温物0006.png",
           "category": {
-            "ja": "揚　物",
-            "en": "Deep Fried",
-            "zh_cn": "炸物", "zh_tw": "炸物", "ko": "아게모노",
-            "fr": "Friture", "de": "Frittiert", "th": "ทอด",
-            "pt": "Frito", "pt_br": "Frito", "tl": "Pinirito", "vi": "Chiên"
+            "ja": "温　物",
+            "en": "Simmered",
+            "zh_cn": "温物", "zh_tw": "溫物", "ko": "니모노",
+            "fr": "Mijoté", "de": "Geschmort", "th": "ต้ม",
+            "pt": "Cozido", "pt_br": "Cozido", "tl": "Nilaga", "vi": "Hầm"
           },
           "description": {
-            "ja": "帆立貝フリット　トリュフバター\n芽キャベツ　アスパラ　抹茶仕立のソースで",
-            "en": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
-            "zh_cn": "扇贝油炸 松露黄油\n抱子甘蓝 芦笋 抹茶酱",
-            "zh_tw": "扇貝油炸 松露奶油\n抱子甘藍 蘆筍 抹茶醬",
-            "ko": "가리비 프리토, 트러플 버터\n방울양배추, 아스파라거스, 말차 소스",
-            "fr": "Fritto de Saint-Jacques, beurre de truffe\nChoux de Bruxelles, asperges, sauce matcha",
-            "de": "Jakobsmuschel-Fritto, Trüffelbutter\nRosenkohl, Spargel, Matcha-Sauce",
-            "th": "หอยเชลล์ทอด เนยทรัฟเฟิล\nกะหล่ำดาว หน่อไม้ฝรั่ง ซอสมัทฉะ",
-            "pt": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, espargos, molho de matcha",
-            "pt_br": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, aspargos, molho de matcha",
-            "tl": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
-            "vi": "Sò điệp chiên giòn, bơ truffle\nBắp cải tí hon, măng tây, sốt matcha"
+            "ja": "春蕪　若布餡かけ　うすい豆",
+            "en": "Spring Turnip, Wakame Sauce, Green Peas",
+            "zh_cn": "春芜菁 裙带菜酱 青豆",
+            "zh_tw": "春蕪菁 裙帶菜醬 青豆",
+            "ko": "봄 순무, 미역 소스, 완두콩",
+            "fr": "Navet de printemps, sauce wakame, petits pois",
+            "de": "Frühlingsrübe, Wakame-Sauce, Erbsen",
+            "th": "หัวผักกาดฤดูใบไม้ผลิ ซอสวากาเมะ ถั่วลันเตา",
+            "pt": "Nabo primaveril, molho de wakame, ervilhas",
+            "pt_br": "Nabo primaveril, molho de wakame, ervilhas",
+            "tl": "Spring Turnip, Wakame Sauce, Green Peas",
+            "vi": "Củ cải xuân, sốt wakame, đậu Hà Lan"
           }
         },
         {
@@ -597,27 +597,27 @@
           }
         },
         {
-          "image": "processed/_07温物0006.png",
+          "image": "processed2/08揚物0023.png",
           "category": {
-            "ja": "温　物",
-            "en": "Simmered",
-            "zh_cn": "温物", "zh_tw": "溫物", "ko": "니모노",
-            "fr": "Mijoté", "de": "Geschmort", "th": "ต้ม",
-            "pt": "Cozido", "pt_br": "Cozido", "tl": "Nilaga", "vi": "Hầm"
+            "ja": "揚　物",
+            "en": "Deep Fried",
+            "zh_cn": "炸物", "zh_tw": "炸物", "ko": "아게모노",
+            "fr": "Friture", "de": "Frittiert", "th": "ทอด",
+            "pt": "Frito", "pt_br": "Frito", "tl": "Pinirito", "vi": "Chiên"
           },
           "description": {
-            "ja": "春蕪　若布餡かけ　うすい豆",
-            "en": "Spring Turnip, Wakame Sauce, Green Peas",
-            "zh_cn": "春芜菁 裙带菜酱 青豆",
-            "zh_tw": "春蕪菁 裙帶菜醬 青豆",
-            "ko": "봄 순무, 미역 소스, 완두콩",
-            "fr": "Navet de printemps, sauce wakame, petits pois",
-            "de": "Frühlingsrübe, Wakame-Sauce, Erbsen",
-            "th": "หัวผักกาดฤดูใบไม้ผลิ ซอสวากาเมะ ถั่วลันเตา",
-            "pt": "Nabo primaveril, molho de wakame, ervilhas",
-            "pt_br": "Nabo primaveril, molho de wakame, ervilhas",
-            "tl": "Spring Turnip, Wakame Sauce, Green Peas",
-            "vi": "Củ cải xuân, sốt wakame, đậu Hà Lan"
+            "ja": "帆立貝フリット　トリュフバター\n芽キャベツ　アスパラ　抹茶仕立のソースで",
+            "en": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
+            "zh_cn": "扇贝油炸 松露黄油\n抱子甘蓝 芦笋 抹茶酱",
+            "zh_tw": "扇貝油炸 松露奶油\n抱子甘藍 蘆筍 抹茶醬",
+            "ko": "가리비 프리토, 트러플 버터\n방울양배추, 아스파라거스, 말차 소스",
+            "fr": "Fritto de Saint-Jacques, beurre de truffe\nChoux de Bruxelles, asperges, sauce matcha",
+            "de": "Jakobsmuschel-Fritto, Trüffelbutter\nRosenkohl, Spargel, Matcha-Sauce",
+            "th": "หอยเชลล์ทอด เนยทรัฟเฟิล\nกะหล่ำดาว หน่อไม้ฝรั่ง ซอสมัทฉะ",
+            "pt": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, espargos, molho de matcha",
+            "pt_br": "Fritto de vieira, manteiga de trufa\nCouve-de-bruxelas, aspargos, molho de matcha",
+            "tl": "Scallop Fritto, Truffle Butter\nBrussels Sprouts, Asparagus, Matcha Sauce",
+            "vi": "Sò điệp chiên giòn, bơ truffle\nBắp cải tí hon, măng tây, sốt matcha"
           }
         },
         {
