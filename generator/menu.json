@@ -62,18 +62,18 @@
       "vi": "Trưa 11:30~ Ngày thường 14:00 / Thứ 7 15:00\nTối 17:30~22:30\nNghỉ: Chủ nhật & Ngày lễ"
     },
     "reservation": {
-      "ja": "ご予約はプロフィールより\nTableCheck",
-      "en": "Reserve via Profile Link\nTableCheck",
-      "zh_cn": "请从主页链接预约\nTableCheck",
-      "zh_tw": "請從主頁連結預約\nTableCheck",
-      "ko": "예약은 프로필 링크에서\nTableCheck",
-      "fr": "Réservez via le lien du profil\nTableCheck",
-      "de": "Reservierung über Profil-Link\nTableCheck",
-      "th": "จองผ่านลิงก์ในโปรไฟล์\nTableCheck",
-      "pt": "Reserve pelo link do perfil\nTableCheck",
-      "pt_br": "Reserve pelo link do perfil\nTableCheck",
-      "tl": "Mag-reserve sa Profile Link\nTableCheck",
-      "vi": "Đặt bàn qua liên kết hồ sơ\nTableCheck"
+      "ja": "ご予約はプロフィールまで",
+      "en": "Reserve via Profile Link",
+      "zh_cn": "请从主页链接预约",
+      "zh_tw": "請從主頁連結預約",
+      "ko": "예약은 프로필 링크에서",
+      "fr": "Réservez via le lien du profil",
+      "de": "Reservierung über Profil-Link",
+      "th": "จองผ่านลิงก์ในโปรไฟล์",
+      "pt": "Reserve pelo link do perfil",
+      "pt_br": "Reserve pelo link do perfil",
+      "tl": "Mag-reserve sa Profile Link",
+      "vi": "Đặt bàn qua liên kết hồ sơ"
     }
   },
 

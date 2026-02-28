@@ -385,8 +385,8 @@ def generate_ending(image_path, store_data, lang, output_path, duration=None, br
         esc = escape_ffmpeg_text(line.strip())
         if not esc:
             continue
-        size = 44 if i == 0 else 58  # 36→44, TableCheck 48→58
-        color = COLOR_GOLD if i == 0 else COLOR_WHITE
+        size = 58
+        color = COLOR_GOLD
         alpha, slide = make_slide_up_alpha(1.3 + i * 0.15, 0.5)
         elements.append(
             f"drawtext=text='{esc}':"
