@@ -216,7 +216,7 @@ def generate_title(image_path, store_name, course_name, price, lang, output_path
     return run_ffmpeg(args, f"タイトル: {output_path}")
 
 
-def generate_clip(image_path, category, description, lang, output_path, is_summary=False, duration=None):
+def generate_clip(image_path, category, description, lang, output_path, is_summary=False, duration=None, image_offset_y=0):
     """料理クリップ動画を生成する（料理名 + 説明テキスト）"""
     duration = duration or CLIP_DURATION
     font = get_font(lang)
@@ -286,9 +286,13 @@ def generate_clip(image_path, category, description, lang, output_path, is_summa
             "drawbox=y=ih*0.84:w=iw:h=ih*0.16:color=black@0.28:t=fill,"
         )
 
+    # image_offset_yが指定された場合、スケーリングを大きくしてクロップ余地を作る
+    extra = abs(image_offset_y) * 2
+    scale_h = HEIGHT + extra
+
     vf = (
-        f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={WIDTH}:{HEIGHT},"
+        f"scale={WIDTH}:{scale_h}:force_original_aspect_ratio=increase,"
+        f"crop={WIDTH}:{HEIGHT}:(iw-{WIDTH})/2:(ih-{HEIGHT})/2-{image_offset_y},"
         f"{dark_overlay}"
         f"{drawtext_cat}"
         f"{drawtext_descs}"
@@ -494,7 +498,8 @@ def generate_course(menu, course_id, lang, base_dir):
         description = dish["description"].get(lang, dish["description"].get("en", ""))
         is_summary = dish.get("category_is_course_summary", False)
 
-        if not generate_clip(image, category, description, lang, clip_path, is_summary, duration=t_clip):
+        offset_y = dish.get("image_offset_y", 0)
+        if not generate_clip(image, category, description, lang, clip_path, is_summary, duration=t_clip, image_offset_y=offset_y):
             return False
         clip_paths.append(clip_path)
 
