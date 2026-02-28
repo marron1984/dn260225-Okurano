@@ -130,6 +130,7 @@
         },
         {
           "image": "processed/_02吸物0015.png",
+          "image_offset_y": 100,
           "category": {
             "ja": "吸　物",
             "en": "Clear Soup",
@@ -449,6 +450,7 @@
         },
         {
           "image": "processed/_02吸物0015.png",
+          "image_offset_y": 100,
           "category": {
             "ja": "吸　物",
             "en": "Clear Soup",
