@@ -578,7 +578,7 @@ def generate_course(menu, course_id, lang, base_dir):
         return False
 
     # 5. BGM合成
-    bgm_path = os.path.join(base_dir, "washoku_lux_41s_ultra.mp3")
+    bgm_path = os.path.join(base_dir, "本番用桔梗.mp3")
     if os.path.exists(bgm_path):
         print(f"  BGM合成中...")
         reel_bgm_path = reel_path.replace(".mp4", "_bgm.mp4")
