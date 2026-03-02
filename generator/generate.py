@@ -577,6 +577,20 @@ def generate_course(menu, course_id, lang, base_dir):
     if not concatenate_videos(clip_paths, reel_path):
         return False
 
+    # 5. BGM合成
+    bgm_path = os.path.join(base_dir, "washoku_lux_41s_ultra.mp3")
+    if os.path.exists(bgm_path):
+        print(f"  BGM合成中...")
+        reel_bgm_path = reel_path.replace(".mp4", "_bgm.mp4")
+        bgm_args = [
+            "-i", reel_path, "-i", bgm_path,
+            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+            "-shortest", "-map", "0:v:0", "-map", "1:a:0",
+            reel_bgm_path
+        ]
+        if not run_ffmpeg(bgm_args, f"BGM合成: {reel_bgm_path}"):
+            print(f"  [WARN] BGM合成に失敗しました。音声なし版のみ出力します。")
+
     # クリップの合計サイズを表示
     total_size = sum(os.path.getsize(p) for p in clip_paths if os.path.exists(p))
     reel_size = os.path.getsize(reel_path) if os.path.exists(reel_path) else 0
